@@ -16,8 +16,6 @@ class LoginViewController: UIViewController {
         self.loginView = Login()
         loginView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
 
-        // Do any additional setup after loading the view.
-//        view.backgroundColor = .brown
         self.view.addSubview(loginView)
         loginView.logInButton.addTarget(self, action: #selector(didTapButton), for: .touchDown)
         
