@@ -13,7 +13,7 @@ class TopView: UIView {
     public var toLogInButton: UIButton! = {
         let button = UIButton()
         button.setTitle("ログイン", for: .normal)
-        button.backgroundColor = UIColor.cyan
+        button.backgroundColor = UIColor.green
         button.setTitleColor(.systemBlue, for: .normal)
         
         return button
@@ -22,7 +22,7 @@ class TopView: UIView {
     public var toSignInButton: UIButton! = {
         let button = UIButton()
         button.setTitle("サインイン", for: .normal)
-        button.backgroundColor = UIColor.cyan
+        button.backgroundColor = UIColor.systemBlue
         button.setTitleColor(.systemBlue, for: .normal)
         
         return button
