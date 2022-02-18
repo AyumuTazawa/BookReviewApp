@@ -22,7 +22,7 @@ class TopView: UIView {
     public var toSignInButton: UIButton! = {
         let button = UIButton()
         button.setTitle("サインイン", for: .normal)
-        button.backgroundColor = UIColor.systemBlue
+        button.backgroundColor = UIColor.systemPink
         button.setTitleColor(.systemBlue, for: .normal)
         
         return button
@@ -42,25 +42,22 @@ class TopView: UIView {
     }
     
     func setup() {
-        
-       
         self.addSubview(toLogInButton)
         self.addSubview(toSignInButton)
-
         
-
         toLogInButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.width.equalTo(200)
+            make.width.equalTo(250)
             make.height.equalTo(50)
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-200)
         }
         
         toSignInButton.snp.makeConstraints { make in
-            make.width.equalTo(200)
-            make.height.equalTo(50)
             make.centerX.equalToSuperview()
+            //make.centerY.equalToSuperview()
             make.bottom.equalTo(toLogInButton.snp.top).offset(-10)
+            make.width.equalTo(250)
+            make.height.equalTo(50)
         }
     }
 }
