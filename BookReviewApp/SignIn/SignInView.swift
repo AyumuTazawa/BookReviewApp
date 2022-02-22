@@ -20,8 +20,16 @@ class SignInView: UIView {
         return button
     }()
     
+    //名前
+    let nameTextField: UITextField = {
+        let nameTextField = UITextField()
+        nameTextField.placeholder = "お名前を入力してください"
+        nameTextField.borderStyle = .roundedRect
+        return nameTextField
+    }()
+
     //メールアドレス
-    private let emailTextField: UITextField = {
+    let emailTextField: UITextField = {
         let mailTextField = UITextField()
         mailTextField.placeholder = "メールアドレスを入力してください"
         mailTextField.borderStyle = .roundedRect
@@ -51,6 +59,7 @@ class SignInView: UIView {
     
     func setup() {
         self.addSubview(signInButton)
+        self.addSubview(nameTextField)
         self.addSubview(emailTextField)
         self.addSubview(confirmationEmailTextField)
         
@@ -61,18 +70,25 @@ class SignInView: UIView {
             make.height.equalTo(50)
         }
         
+        nameTextField.snp.makeConstraints { make in
+            make.width.equalTo(200)
+            make.height.equalTo(50)
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(confirmationEmailTextField.snp.top).offset(-20)
+        }
+        
         emailTextField.snp.makeConstraints { make in
             make.width.equalTo(200)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(signInButton.snp.top).offset(-50)
+            make.bottom.equalTo(signInButton.snp.top).offset(-20)
         }
         
         confirmationEmailTextField.snp.makeConstraints { make in
             make.width.equalTo(200)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(emailTextField.snp.top).offset(-50)
+            make.bottom.equalTo(emailTextField.snp.top).offset(-20)
         }
     }
     
