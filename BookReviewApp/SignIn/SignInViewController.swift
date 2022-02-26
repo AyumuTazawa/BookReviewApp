@@ -8,22 +8,34 @@
 import UIKit
 
 class SignInViewController: UIViewController {
+    
     var signInView:SignInView! = SignInView()
+    var dialog: Dialog = Dialog()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        signInView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
-        self.view.addSubview(signInView)
+        setUpView()
+        setUpButton()
         
-        signInView.signInButton.addTarget(self, action: #selector(didTapsignInButton), for: .touchDown)
+    }
+    
+    func setUpView() {
+        let width = self.view.bounds.width
+        let height = self.view.bounds.height
+        signInView.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        self.view.addSubview(signInView)
+    }
+    
+    func setUpButton() {
+        signInView.signInButton.addTarget(self,
+                                          action: #selector(didTapsignInButton),
+                                          for: .touchDown)
     }
     
     @objc func didTapsignInButton() {
-        let vc = ViewController.init()
-        navigationController?.pushViewController(vc, animated: true)
+        dialog.showDialog(vc: self, massegae: "テスト")
     }
-    
     
 }
