@@ -10,6 +10,7 @@ import UIKit
 class SignInViewController: UIViewController {
     
     var signInView:SignInView! = SignInView()
+    var signInModel: SignInModel! = SignInModel()
     var dialog: Dialog = Dialog()
     
     override func viewDidLoad() {
@@ -35,7 +36,17 @@ class SignInViewController: UIViewController {
     }
     
     @objc func didTapsignInButton() {
-        dialog.showDialog(vc: self, massegae: "テスト")
+        var signindata: Dictionary<String, Any> = ["1":"テスト"]
+        var name = signInView.nameTextField.text
+        var email = signInView.emailTextField.text
+        var password = signInView.passwordTextField.text
+        signindata = [
+            "name": name,
+            "email": email,
+            "password": password
+        ]
+        signInModel.postSignInData(signindata: signindata)
+        //dialog.showDialog(vc: self, massegae: "テスト")
     }
     
 }
