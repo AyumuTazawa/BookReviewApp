@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class SignInViewController: UIViewController {
     
@@ -46,6 +47,8 @@ class SignInViewController: UIViewController {
             "password": password
         ]
         signInModel.postSignInData(signindata: signindata)
+        let view = UIHostingController(rootView: ContentView())
+        self.present(view, animated: true, completion: nil)
         //dialog.showDialog(vc: self, massegae: "テスト")
     }
     
