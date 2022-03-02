@@ -23,11 +23,16 @@ struct UserInfoView: View {
                 .ignoresSafeArea(.all)
             
             VStack {
+                //タイトル
+                Text("ユーザー情報更新")
+                    .foregroundColor(.green)
+                
                 //名前
                 TextField("名前", text: $name)
                     .textFieldStyle(.roundedBorder)
                     .frame(width: uiWidth)
                     .padding()
+                
                 //名前更新ボタン
                 Button("名前を更新", action: {
                     print("名前を更新ボタン押下")
