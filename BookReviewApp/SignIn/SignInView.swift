@@ -11,7 +11,7 @@ import SnapKit
 class SignInView: UIView {
     
     //サインインボタン
-    var signInButton: UIButton! = {
+    var signInButton: UIButton! = { () -> UIButton in
         let button = UIButton()
         button.setTitle("サインイン", for: .normal)
         button.backgroundColor = UIColor.cyan
@@ -21,7 +21,7 @@ class SignInView: UIView {
     }()
     
     //名前
-    let nameTextField: UITextField = {
+    let nameTextField: UITextField = { () -> UITextField in
         let nameTextField = UITextField()
         nameTextField.placeholder = "お名前を入力してください"
         nameTextField.borderStyle = .roundedRect
@@ -29,7 +29,7 @@ class SignInView: UIView {
     }()
 
     //メールアドレス
-    let emailTextField: UITextField = {
+    let emailTextField: UITextField = { () -> UITextField in
         let mailTextField = UITextField()
         mailTextField.placeholder = "メールアドレスを入力してください"
         mailTextField.borderStyle = .roundedRect
@@ -37,7 +37,7 @@ class SignInView: UIView {
     }()
     
     //確認用メールアドレス
-    let passwordTextField: UITextField = {
+    let passwordTextField: UITextField = { () -> UITextField in
         let mailTextField = UITextField()
         mailTextField.placeholder = "確認メールアドレスを入力してください"
         mailTextField.borderStyle = .roundedRect

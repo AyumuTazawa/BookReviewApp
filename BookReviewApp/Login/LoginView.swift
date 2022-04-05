@@ -10,7 +10,7 @@ import SnapKit
 
 class Login: UIView {
     
-    public var logInButton: UIButton! = {
+    public var logInButton: UIButton! = { () -> UIButton in
         let button = UIButton()
         button.setTitle("ログイン", for: .normal)
         button.backgroundColor = UIColor.cyan
@@ -19,14 +19,14 @@ class Login: UIView {
         return button
     }()
     
-    let emailTextField: UITextField = {
+    let emailTextField: UITextField = { () -> UITextField in
         let mailTextField = UITextField()
         mailTextField.placeholder = "メールアドレスを入力してください"
         mailTextField.borderStyle = .roundedRect
         return mailTextField
     }()
     
-    let confirmationEmailTextField: UITextField = {
+    let confirmationEmailTextField: UITextField = { () -> UITextField in
         let mailTextField = UITextField()
         mailTextField.placeholder = "確認メールアドレスを入力してください"
         mailTextField.borderStyle = .roundedRect
