@@ -37,18 +37,23 @@ class SignInViewController: UIViewController {
     }
     
     @objc func didTapsignInButton() {
-        var signindata: Dictionary<String, Any> = ["1":"テスト"]
-        var name = signInView.nameTextField.text
-        var email = signInView.emailTextField.text
-        var password = signInView.passwordTextField.text
+        let signindata: Dictionary<String, Any>!
+        let name: String = signInView.nameTextField.text!
+        let email: String = signInView.emailTextField.text!
+        let password: String = signInView.passwordTextField.text!
         signindata = [
             "name": name,
             "email": email,
             "password": password
         ]
-        signInModel.postSignInData(signindata: signindata)
-        let view = UIHostingController(rootView: UserInfoView())
-        self.present(view, animated: true, completion: nil)
+        let checkName = Validator.shared.checkName(name: name, min: 1, max: 50)
+        let mailCheckResult = Validator.shared.checkMail(mail: email)
+        let passwordCheckResult = Validator.shared.checkPassword(password: password, min: 4, max: 6)
+        //signInModel.postSignInData(signindata: signindata)
+        //let view = UIHostingController(rootView: UserInfoView())
+        //self.present(view, animated: true, completion: nil)
+        
+        
         //dialog.showDialog(vc: self, massegae: "テスト")
     }
     
