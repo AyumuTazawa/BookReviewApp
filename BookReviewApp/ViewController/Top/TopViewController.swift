@@ -39,7 +39,7 @@ class TopViewController: UIViewController {
     
     @objc func didTapButton(_ sender: UIButton) {
         let vc = LoginViewController()
-         navigationController?.pushViewController(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func didTaptoSignInButton(_ sender: UIButton) {
