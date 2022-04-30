@@ -7,8 +7,20 @@
 
 import UIKit
 import CoreData
+import SwiftUI
 
 @main
+
+//struct SwiftUIAppSample: App {
+//    // swiftlint:disable weak_delegate
+//    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate  // 追加する
+//    var body: some Scene {
+//        WindowGroup {
+//            ContentView()
+//        }
+//    }
+//}
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 

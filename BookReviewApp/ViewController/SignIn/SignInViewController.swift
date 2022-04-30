@@ -10,8 +10,8 @@ import SwiftUI
 
 class SignInViewController: UIViewController {
     
-    var signInView:SignInView! = SignInView()
-    var signInModel: SignInModel! = SignInModel()
+    var signInView:SignInView = SignInView()
+    var signInModel: SignInModel = SignInModel()
     var dialog: Dialog = Dialog()
     
     override func viewDidLoad() {
@@ -47,7 +47,7 @@ class SignInViewController: UIViewController {
             "password": password
         ]
         signInModel.postSignInData(signindata: signindata)
-        let view = UIHostingController(rootView: ContentView())
+        let view = UIHostingController(rootView: UserInfoView())
         self.present(view, animated: true, completion: nil)
         //dialog.showDialog(vc: self, massegae: "テスト")
     }

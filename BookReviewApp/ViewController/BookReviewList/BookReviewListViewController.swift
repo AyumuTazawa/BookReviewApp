@@ -9,6 +9,7 @@ import UIKit
 
 class BookReviewListViewController: UIViewController {
     var bookList: [String] = ["呪術廻戦1巻", "呪術廻戦2巻", "呪術廻戦3巻", "呪術廻戦4巻", "呪術廻戦5巻"]
+    var bookDetailData: [String] = ["テスト", "テスト", "テスト", "テスト", "テスト", ]
     //スクリーンの横幅、縦幅を定義
     let screenWidth = Int(UIScreen.main.bounds.size.width)
     let screenHeight = Int(UIScreen.main.bounds.size.height)
@@ -28,9 +29,10 @@ class BookReviewListViewController: UIViewController {
                                            height:screenHeight)
         bookReviewTableView.delegate = self
         bookReviewTableView.dataSource = self
-        bookReviewTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+       // bookReviewTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        bookReviewTableView.register(BookReviewCell.self, forCellReuseIdentifier: "cell")
         view.addSubview(bookReviewTableView)
-        self.bookReviewTableView.rowHeight = 100
+        self.bookReviewTableView.rowHeight = 300
     }
 
 }
@@ -41,8 +43,11 @@ extension BookReviewListViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        cell.textLabel?.text = bookList[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BookReviewCell
+        let name = bookList[indexPath.row]
+        let datail = bookDetailData[indexPath.row]
+        cell.setupCell(name: name, detail: datail)
+
         return cell
     }
     
