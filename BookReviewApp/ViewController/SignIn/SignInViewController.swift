@@ -46,15 +46,26 @@ class SignInViewController: UIViewController {
             "email": email,
             "password": password
         ]
-        let checkName = Validator.shared.checkName(name: name, min: 1, max: 50)
+        var errMessage: [String] = []
+        let checkNameResult = Validator.shared.checkName(name: name, min: 1, max: 50)
+        if(checkNameResult.isValid == false){ errMessage.append(checkNameResult.isError) }
+        
         let mailCheckResult = Validator.shared.checkMail(mail: email)
+        if(mailCheckResult.isValid == false){ errMessage.append(mailCheckResult.isError) }
+        
         let passwordCheckResult = Validator.shared.checkPassword(password: password, min: 4, max: 6)
-        //signInModel.postSignInData(signindata: signindata)
-        //let view = UIHostingController(rootView: UserInfoView())
-        //self.present(view, animated: true, completion: nil)
+        if(passwordCheckResult.isValid == false){ errMessage.append(passwordCheckResult.isError) }
         
+        if (errMessage.isEmpty){
+            //signInModel.postSignInData(signindata: signindata)
+            let view = UIHostingController(rootView: UserInfoView())
+            self.present(view, animated: true, completion: nil)
+            //dialog.showDialog(vc: self, massegae: "テスト")
+        }else{
+            print(errMessage)
+        }
         
-        //dialog.showDialog(vc: self, massegae: "テスト")
+
     }
     
 }
