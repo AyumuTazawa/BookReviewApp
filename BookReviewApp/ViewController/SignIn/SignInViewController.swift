@@ -10,6 +10,8 @@ import SwiftUI
 
 class SignInViewController: UIViewController {
     
+    var errMessage: [String] = []
+    var signindata: Dictionary<String, String> = [:]
     var signInView:SignInView = SignInView()
     var signInModel: SignInModel = SignInModel()
     var dialog: Dialog = Dialog()
@@ -37,23 +39,26 @@ class SignInViewController: UIViewController {
     }
     
     @objc func didTapsignInButton() {
-        let signindata: Dictionary<String, Any>!
         let name: String = signInView.nameTextField.text!
         let email: String = signInView.emailTextField.text!
         let password: String = signInView.passwordTextField.text!
-        signindata = [
+        self.signindata = [
             "name": name,
             "email": email,
             "password": password
         ]
-        var errMessage: [String] = []
-        let checkNameResult = Validator.shared.checkName(name: name, min: 1, max: 50)
+        executeValidationChek(data: signindata)
+    }
+    
+    func executeValidationChek(data: Dictionary<String, String>) -> Void {
+        self.errMessage.removeAll()
+        let checkNameResult = Validator.shared.checkName(name: data["name"], min: 1, max: 50)
         if(checkNameResult.isValid == false){ errMessage.append(checkNameResult.isError) }
         
-        let mailCheckResult = Validator.shared.checkMail(mail: email)
+        let mailCheckResult = Validator.shared.checkMail(mail: data["email"])
         if(mailCheckResult.isValid == false){ errMessage.append(mailCheckResult.isError) }
         
-        let passwordCheckResult = Validator.shared.checkPassword(password: password, min: 4, max: 6)
+        let passwordCheckResult = Validator.shared.checkPassword(password: data["password"], min: 4, max: 6)
         if(passwordCheckResult.isValid == false){ errMessage.append(passwordCheckResult.isError) }
         
         if (errMessage.isEmpty){
@@ -64,8 +69,6 @@ class SignInViewController: UIViewController {
         }else{
             print(errMessage)
         }
-        
-
     }
     
 }
