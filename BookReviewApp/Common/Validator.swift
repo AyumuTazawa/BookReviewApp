@@ -54,7 +54,7 @@ class Validator {
     }
     
     public func checkMail(mail: String?) -> ValidationResult {
-        guard let mail = mail, !mail.isEmpty else { return .empty }
+        guard let mail: String = mail, !mail.isEmpty else { return .empty }
         //guard mail.count >= min && mail.count <= max else { return .overCharacter }
         let pattern = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+/.[A-Za-z]{2,6}"
         if mail.range(of: pattern, options: .regularExpression) != nil { return .unusableCharacters }
