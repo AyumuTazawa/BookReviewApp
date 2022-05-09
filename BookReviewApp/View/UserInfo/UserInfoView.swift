@@ -9,10 +9,11 @@ import SwiftUI
 
 struct UserInfoView: View {
     
-    @State var name = ""
+    @State var name: String = ""
     
     var body: some View {
         
+        var errMessage: [String] = []
         let userInfoViewBounds = UIScreen.main.bounds
         let userInfoVieWwidth = userInfoViewBounds.width
         let userInfoViewHeight = Int(userInfoViewBounds.height)
@@ -36,6 +37,14 @@ struct UserInfoView: View {
                 //名前更新ボタン
                 Button("名前を更新", action: {
                     print("名前を更新ボタン押下")
+                    let checkNameResult = Validator.shared.checkName(name: name, min: 1, max: 50)
+                    if(checkNameResult.isValid == false){ errMessage.append(checkNameResult.isError)
+                    }
+                    if (errMessage.isEmpty){
+                        print("OK")
+                    }else{
+                        print(errMessage)
+                    }
                 })
                     .frame(width: uiWidth, height: 40)
                     .background(.pink)
