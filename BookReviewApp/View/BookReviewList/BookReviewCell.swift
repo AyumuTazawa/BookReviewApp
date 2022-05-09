@@ -27,7 +27,11 @@ class BookReviewCell: UITableViewCell {
     }
     
     lazy var bookStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLavel, reviewerLabel])
+        let stackView = UIStackView(arrangedSubviews: [titleLavel,
+                                                       detailTextView,
+                                                       reviewerLabel,
+                                                       reviewLabel
+                                                      ])
         stackView.axis = .vertical
         stackView.spacing = 2
         stackView.alignment = .fill
@@ -68,6 +72,7 @@ class BookReviewCell: UITableViewCell {
     //レビュー文
     let reviewLabel: UITextView = { () -> UITextView in
         let label = UITextView()
+        label.backgroundColor = .systemPink
         return label
     }()
     
@@ -81,10 +86,12 @@ class BookReviewCell: UITableViewCell {
         }
     }
     
-    func setupCell(name: String, detail: String) -> Void {
+    func setupCell(name: String, detail: String, reviewer: String, review: String) -> Void {
         DispatchQueue.main.async {
             self.titleLavel.text = name
-            self.reviewerLabel.text = detail
+            self.detailTextView.text = detail
+            self.reviewerLabel.text = reviewer
+            self.reviewLabel.text = review
         }
     }
     
