@@ -70,9 +70,10 @@ class BookReviewCell: UITableViewCell {
     }()
     
     //レビュー文
-    let reviewLabel: UITextView = { () -> UITextView in
-        let label = UITextView()
+    let reviewLabel: UILabel = { () -> UILabel in
+        let label = UILabel()
         label.backgroundColor = .systemPink
+        label.numberOfLines = 4
         return label
     }()
     
