@@ -11,7 +11,7 @@ class BookReviewListViewController: UIViewController {
     var bookList: [String] = ["呪術廻戦1巻", "呪術廻戦2巻", "呪術廻戦3巻", "呪術廻戦4巻", "呪術廻戦5巻"]
     var bookDetailData: [String] = ["テスト", "テスト", "テスト", "テスト", "テスト"]
     var reviewer: [String] = ["テスト", "テスト", "テスト", "テスト", "テスト"]
-    var review: [String] = ["テスト", "テスト", "テスト", "テスト", "テスト"]
+    var review: [String] = ["テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト", "テスト", "テスト", "テスト", "テスト"]
     //スクリーンの横幅、縦幅を定義
     let screenWidth = Int(UIScreen.main.bounds.size.width)
     let screenHeight = Int(UIScreen.main.bounds.size.height)
