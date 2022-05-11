@@ -10,11 +10,15 @@ import UIKit
 import SnapKit
 
 class BookReviewCell: UITableViewCell {
-    
+//    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+//        super.init(style: style, reuseIdentifier: reuseIdentifier)
+//        setBacView()
+//        //setupcellLabel()
+//    }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setBacView()
-        //setupcellLabel()
+        setLayout()
+
     }
     
     required init?(coder: NSCoder) {
@@ -26,26 +30,13 @@ class BookReviewCell: UITableViewCell {
         backgroundColor = .clear
     }
     
-    lazy var bookStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLavel,
-                                                       detailTextView,
-                                                       reviewerLabel,
-                                                       reviewLabel
-                                                      ])
-        stackView.axis = .vertical
-        stackView.spacing = 2
-        stackView.alignment = .fill
-        stackView.distribution = .fillEqually
-        return stackView
-    }()
-    
     //背景
-    let backView: UIView = { () -> UIView in
-        let view = UIView()
-        view.backgroundColor = UIColor.systemGray
-        view.layer.cornerRadius = 5
-        return view
-    }()
+//    let backView: UIView = { () -> UIView in
+//        let view = UIView()
+//        view.backgroundColor = UIColor.systemGray
+//        view.layer.cornerRadius = 5
+//        return view
+//    }()
     
     //タイトル
     let titleLavel: UILabel = { () -> UILabel in
@@ -56,8 +47,8 @@ class BookReviewCell: UITableViewCell {
     }()
     
     //紹介文
-    let detailTextView: UITextView = { () -> UITextView in
-        let textView = UITextView()
+    let detailLabel: UILabel = { () -> UILabel in
+        let textView = UILabel()
         textView.backgroundColor = .red
         return textView
     }()
@@ -77,23 +68,40 @@ class BookReviewCell: UITableViewCell {
         return label
     }()
     
-    private func setBacView() -> Void {
+    func setLayout() {
+        addSubview(titleLavel)
+        addSubview(detailLabel)
+        addSubview(reviewerLabel)
+        addSubview(reviewLabel)
         
-        self.addSubview(bookStackView)
-        bookStackView.snp.makeConstraints {
-            $0.width.equalToSuperview().multipliedBy(0.8)
-            $0.height.equalTo(contentView.snp.height).multipliedBy(0.9)
-            $0.center.equalToSuperview()
+        titleLavel.snp.makeConstraints { (make) in
+            make.height.equalTo(30)
+            make.width.equalToSuperview()
+            make.top.equalTo(+0.5)
+            make.left.equalTo(+0.5)
+        }
+        detailLabel.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.width.equalToSuperview()
+            make.top.equalTo(titleLavel.snp.bottom).offset(0.1)
+            make.left.equalTo(+0.5)
+        }
+        reviewerLabel.snp.makeConstraints { make in
+            make.height.equalTo(20)
+            make.width.equalToSuperview()
+            make.top.equalTo(detailLabel.snp.bottom).offset(0.1)
+            make.left.equalTo(+0.5)
+        }
+        reviewLabel.snp.makeConstraints { make in
+            make.height.equalTo(100)
+            make.width.equalToSuperview()
+            make.top.equalTo(reviewerLabel.snp.bottom).offset(0.1)
+            make.left.equalTo(+0.5)
         }
     }
     
-    func setupCell(name: String, detail: String, reviewer: String, review: String) -> Void {
-        DispatchQueue.main.async {
-            self.titleLavel.text = name
-            self.detailTextView.text = detail
-            self.reviewerLabel.text = reviewer
-            self.reviewLabel.text = review
-        }
+    func setupCell(title: String) {
+        titleLavel.text = title
     }
     
 }
