@@ -10,11 +10,7 @@ import UIKit
 import SnapKit
 
 class BookReviewCell: UITableViewCell {
-//    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-//        super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        setBacView()
-//        //setupcellLabel()
-//    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setLayout()
