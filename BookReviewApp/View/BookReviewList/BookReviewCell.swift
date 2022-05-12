@@ -27,12 +27,12 @@ class BookReviewCell: UITableViewCell {
     }
     
     //背景
-//    let backView: UIView = { () -> UIView in
-//        let view = UIView()
-//        view.backgroundColor = UIColor.systemGray
-//        view.layer.cornerRadius = 5
-//        return view
-//    }()
+    let backView: UIView = { () -> UIView in
+        let view = UIView()
+        view.backgroundColor = UIColor.systemGray
+        view.layer.cornerRadius = 5
+        return view
+    }()
     
     //タイトル
     let titleLavel: UILabel = { () -> UILabel in
