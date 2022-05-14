@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BookReviewDetailView: UIView {
+class DetailBookReviewView: UIView {
     
     //項目名:本のタイトル
     var bookTitleItemLabel: UILabel = { () -> UILabel in
@@ -189,8 +189,6 @@ class BookReviewDetailView: UIView {
             make.centerX.equalToSuperview()
             make.top.equalTo(bookReviewItemLabel.snp.bottom).offset(20)
         }
-        
-
     }
     
 }

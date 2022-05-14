@@ -7,9 +7,9 @@
 
 import UIKit
 
-class BookReviewDetailViewController: UIViewController {
+class DetailBookReviewViewController: UIViewController {
 
-    var bookReviewDetailView = BookReviewDetailView()
+    var bookReviewDetailView = DetailBookReviewView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
