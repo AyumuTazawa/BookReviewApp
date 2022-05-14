@@ -68,10 +68,19 @@ class EditBookReviewView: UIView {
         return textField
     }()
     
-    //登録ボタン
-    var bookRegisterButton: UIButton! = { () -> UIButton in
+    //削除ボタン
+    var bookDeleteButton: UIButton! = { () -> UIButton in
         let button = UIButton()
-        button.setTitle("登録", for: .normal)
+        button.setTitle("削除", for: .normal)
+        button.backgroundColor = UIColor.systemPink
+        button.setTitleColor(.systemBlue, for: .normal)
+        return button
+    }()
+    
+    //更新ボタン
+    var bookUpdateButton: UIButton! = { () -> UIButton in
+        let button = UIButton()
+        button.setTitle("更新", for: .normal)
         button.backgroundColor = UIColor.systemPink
         button.setTitleColor(.systemBlue, for: .normal)
         return button
@@ -99,7 +108,8 @@ class EditBookReviewView: UIView {
         self.addSubview(bookDetailTextField)
         self.addSubview(bookReviewItemLabel)
         self.addSubview(bookReviewTextField)
-        self.addSubview(bookRegisterButton)
+        self.addSubview(bookDeleteButton)
+        self.addSubview(bookUpdateButton)
         
         bookDetailItemLabel.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.8)
@@ -157,11 +167,18 @@ class EditBookReviewView: UIView {
             make.top.equalTo(bookReviewItemLabel.snp.bottom).offset(20)
         }
         
-        bookRegisterButton.snp.makeConstraints { make in
+        bookDeleteButton.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.6)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
-            make.top.equalTo(bookReviewTextField.snp.bottom).offset(80)
+            make.top.equalTo(bookReviewTextField.snp.bottom).offset(40)
+        }
+        
+        bookUpdateButton.snp.makeConstraints { make in
+            make.width.equalToSuperview().multipliedBy(0.6)
+            make.height.equalTo(50)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(bookDeleteButton.snp.bottom).offset(20)
         }
     }
 
