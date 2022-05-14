@@ -9,12 +9,25 @@ import UIKit
 
 class PostBookReview: UIView {
 
+    //項目名:本のタイトル
+    var bookTitleLabel: UILabel = { () -> UILabel in
+        let label: UILabel = UILabel()
+        label.text = "タイトル"
+        return label
+    }()
     //本のタイトル
-    var signInButton: UITextField! = { () -> UITextField in
+    let bookTitleTextField: UITextField = { () -> UITextField in
         let textField = UITextField()
         textField.placeholder = "本のタイトルを入力してください"
         textField.borderStyle = .roundedRect
         return textField
+    }()
+    
+    //項目名:URL
+    var bookURLLabel: UILabel = { () -> UILabel in
+        let label: UILabel = UILabel()
+        label.text = "URL"
+        return label
     }()
     
     //URL
@@ -25,12 +38,26 @@ class PostBookReview: UIView {
         return textField
     }()
 
+    //項目名:紹介文
+    var bookDetailLabel: UILabel = { () -> UILabel in
+        let label: UILabel = UILabel()
+        label.text = "紹介文"
+        return label
+    }()
+    
     //紹介文
     let detailTextField: UITextField = { () -> UITextField in
         let textField = UITextField()
         textField.placeholder = "紹介文を入力してください"
         textField.borderStyle = .roundedRect
         return textField
+    }()
+    
+    //項目名:レビュー
+    var bookReviewLabel: UILabel = { () -> UILabel in
+        let label: UILabel = UILabel()
+        label.text = "レビュー"
+        return label
     }()
     
     //レビュー
