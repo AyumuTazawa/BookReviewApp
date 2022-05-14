@@ -10,7 +10,7 @@ import UIKit
 class PostBookReviewView: UIView {
 
     //項目名:本のタイトル
-    var bookTitleLabel: UILabel = { () -> UILabel in
+    var bookTitleItemLabel: UILabel = { () -> UILabel in
         let label: UILabel = UILabel()
         label.text = "タイトル："
         return label
@@ -24,7 +24,7 @@ class PostBookReviewView: UIView {
     }()
     
     //項目名:URL
-    var bookURLLabel: UILabel = { () -> UILabel in
+    var bookURLItemLabel: UILabel = { () -> UILabel in
         let label: UILabel = UILabel()
         label.text = "URL："
         return label
@@ -39,7 +39,7 @@ class PostBookReviewView: UIView {
     }()
 
     //項目名:紹介文
-    var bookDetailLabel: UILabel = { () -> UILabel in
+    var bookDetailItemLabel: UILabel = { () -> UILabel in
         let label: UILabel = UILabel()
         label.text = "紹介文："
         return label
@@ -54,7 +54,7 @@ class PostBookReviewView: UIView {
     }()
     
     //項目名:レビュー
-    var bookReviewLabel: UILabel = { () -> UILabel in
+    var bookReviewItemLabel: UILabel = { () -> UILabel in
         let label: UILabel = UILabel()
         label.text = "レビュー："
         return label
@@ -91,17 +91,17 @@ class PostBookReviewView: UIView {
     }
     
     func setup() {
-        self.addSubview(bookDetailLabel)
-        self.addSubview(bookTitleLabel)
+        self.addSubview(bookDetailItemLabel)
+        self.addSubview(bookTitleItemLabel)
         self.addSubview(bookTitleTextField)
-        self.addSubview(bookURLLabel)
+        self.addSubview(bookURLItemLabel)
         self.addSubview(bookURLTextField)
         self.addSubview(bookDetailTextField)
-        self.addSubview(bookReviewLabel)
+        self.addSubview(bookReviewItemLabel)
         self.addSubview(bookReviewTextField)
         self.addSubview(bookRegisterButton)
         
-        bookDetailLabel.snp.makeConstraints { make in
+        bookDetailItemLabel.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(30)
             make.centerX.equalToSuperview()
@@ -112,10 +112,10 @@ class PostBookReviewView: UIView {
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(bookDetailLabel.snp.top).offset(-20)
+            make.bottom.equalTo(bookDetailItemLabel.snp.top).offset(-20)
         }
         
-        bookURLLabel.snp.makeConstraints { make in
+        bookURLItemLabel.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
@@ -126,10 +126,10 @@ class PostBookReviewView: UIView {
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(bookURLLabel.snp.top).offset(-20)
+            make.bottom.equalTo(bookURLItemLabel.snp.top).offset(-20)
         }
         
-        bookTitleLabel.snp.makeConstraints { make in
+        bookTitleItemLabel.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
@@ -140,10 +140,10 @@ class PostBookReviewView: UIView {
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
-            make.top.equalTo(bookDetailLabel.snp.bottom).offset(20)
+            make.top.equalTo(bookDetailItemLabel.snp.bottom).offset(20)
         }
         
-        bookReviewLabel.snp.makeConstraints { make in
+        bookReviewItemLabel.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
@@ -154,7 +154,7 @@ class PostBookReviewView: UIView {
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
-            make.top.equalTo(bookReviewLabel.snp.bottom).offset(20)
+            make.top.equalTo(bookReviewItemLabel.snp.bottom).offset(20)
         }
         
         bookRegisterButton.snp.makeConstraints { make in
