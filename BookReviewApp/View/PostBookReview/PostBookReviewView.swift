@@ -97,7 +97,6 @@ class PostBookReviewView: UIView {
         self.addSubview(bookURLLabel)
         self.addSubview(bookURLTextField)
         self.addSubview(bookDetailTextField)
-        self.addSubview(bookDetailTextField)
         self.addSubview(bookReviewLabel)
         self.addSubview(bookReviewTextField)
         self.addSubview(bookRegisterButton)
