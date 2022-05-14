@@ -12,7 +12,7 @@ class PostBookReviewView: UIView {
     //項目名:本のタイトル
     var bookTitleLabel: UILabel = { () -> UILabel in
         let label: UILabel = UILabel()
-        label.text = "タイトル"
+        label.text = "タイトル："
         return label
     }()
     //本のタイトル
@@ -26,7 +26,7 @@ class PostBookReviewView: UIView {
     //項目名:URL
     var bookURLLabel: UILabel = { () -> UILabel in
         let label: UILabel = UILabel()
-        label.text = "URL"
+        label.text = "URL："
         return label
     }()
     
@@ -41,7 +41,7 @@ class PostBookReviewView: UIView {
     //項目名:紹介文
     var bookDetailLabel: UILabel = { () -> UILabel in
         let label: UILabel = UILabel()
-        label.text = "紹介文"
+        label.text = "紹介文："
         return label
     }()
     
@@ -56,7 +56,7 @@ class PostBookReviewView: UIView {
     //項目名:レビュー
     var bookReviewLabel: UILabel = { () -> UILabel in
         let label: UILabel = UILabel()
-        label.text = "レビュー"
+        label.text = "レビュー："
         return label
     }()
     
@@ -101,49 +101,49 @@ class PostBookReviewView: UIView {
         self.addSubview(bookRegisterButton)
         
         bookDetailLabel.snp.makeConstraints { make in
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.height.equalTo(30)
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
-            make.width.equalToSuperview()
-            make.height.equalTo(30)
         }
         
         bookURLTextField.snp.makeConstraints { make in
-            make.width.equalTo(200)
+            make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
             make.bottom.equalTo(bookDetailLabel.snp.top).offset(-20)
         }
         
         bookURLLabel.snp.makeConstraints { make in
-            make.width.equalTo(200)
+            make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
             make.bottom.equalTo(bookURLTextField.snp.top).offset(-20)
         }
         
         bookTitleTextField.snp.makeConstraints { make in
-            make.width.equalTo(200)
+            make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
             make.bottom.equalTo(bookURLLabel.snp.top).offset(-20)
         }
         
         bookTitleLabel.snp.makeConstraints { make in
-            make.width.equalTo(200)
+            make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
             make.bottom.equalTo(bookTitleTextField.snp.top).offset(-20)
         }
         
         bookDetailTextField.snp.makeConstraints { make in
-            make.width.equalTo(200)
+            make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
             make.top.equalTo(bookDetailLabel.snp.bottom).offset(20)
         }
         
         bookRegisterButton.snp.makeConstraints { make in
-            make.width.equalTo(200)
+            make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
             make.top.equalTo(bookDetailTextField.snp.bottom).offset(80)
