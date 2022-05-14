@@ -61,7 +61,7 @@ class PostBookReviewView: UIView {
     }()
     
     //レビュー
-    let bookreviewTextField: UITextField = { () -> UITextField in
+    let bookReviewTextField: UITextField = { () -> UITextField in
         let textField = UITextField()
         textField.placeholder = "レビューを入力してください"
         textField.borderStyle = .roundedRect
@@ -98,6 +98,8 @@ class PostBookReviewView: UIView {
         self.addSubview(bookURLTextField)
         self.addSubview(bookDetailTextField)
         self.addSubview(bookDetailTextField)
+        self.addSubview(bookReviewLabel)
+        self.addSubview(bookReviewTextField)
         self.addSubview(bookRegisterButton)
         
         bookDetailLabel.snp.makeConstraints { make in
@@ -142,11 +144,25 @@ class PostBookReviewView: UIView {
             make.top.equalTo(bookDetailLabel.snp.bottom).offset(20)
         }
         
-        bookRegisterButton.snp.makeConstraints { make in
+        bookReviewLabel.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
-            make.top.equalTo(bookDetailTextField.snp.bottom).offset(80)
+            make.top.equalTo(bookDetailTextField.snp.bottom).offset(20)
+        }
+        
+        bookReviewTextField.snp.makeConstraints { make in
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.height.equalTo(50)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(bookReviewLabel.snp.bottom).offset(20)
+        }
+        
+        bookRegisterButton.snp.makeConstraints { make in
+            make.width.equalToSuperview().multipliedBy(0.6)
+            make.height.equalTo(50)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(bookReviewTextField.snp.bottom).offset(80)
         }
     }
 
