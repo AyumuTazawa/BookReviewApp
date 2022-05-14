@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BookReviewDetailView: UIView {
+class DetailBookReviewView: UIView {
     
     //項目名:本のタイトル
     var bookTitleItemLabel: UILabel = { () -> UILabel in
