@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BookReviewDetailViewController: UIViewController {
+class DetailBookReviewViewController: UIViewController {
 
     var bookReviewDetailView = BookReviewDetailView()
     
