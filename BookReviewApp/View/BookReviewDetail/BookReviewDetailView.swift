@@ -189,8 +189,6 @@ class BookReviewDetailView: UIView {
             make.centerX.equalToSuperview()
             make.top.equalTo(bookReviewItemLabel.snp.bottom).offset(20)
         }
-        
-
     }
     
 }
