@@ -66,6 +66,7 @@ class SignInViewController: UIViewController {
             let view = UIHostingController(rootView: UserInfoView())
             self.present(view, animated: true, completion: nil)
             //dialog.showDialog(vc: self, massegae: "テスト")
+            //self.signInModel.postSignInData(signindata: data)
         }else{
             print(errMessage)
         }
