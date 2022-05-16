@@ -69,5 +69,36 @@ class Validator {
         if password.range(of: pattern, options: .regularExpression) != nil { return .unusableCharacters }
         return .valid
     }
+    
+    public func checkTitle(title: String?, min: Int, max: Int) -> ValidationResult {
+        guard let title = title, !title.isEmpty else { return .empty }
+        guard title.count >= min && title.count <= max else { return .overCharacter }
+        let pattern = "[^a-zA-Z0-9ぁ-んァ-ー亜-黑]"
+        if title.range(of: pattern, options: .regularExpression) != nil { return .unusableCharacters }
+        return .valid
+    }
+    
+    public func checkURL(url: String?, min: Int, max: Int) -> ValidationResult {
+        guard let url = url, !url.isEmpty else { return .empty }
+        guard url.count >= min && url.count <= max else { return .overCharacter }
+        let pattern = "[^a-zA-Z0-9ぁ-んァ-ー亜-黑]"
+        if url.range(of: pattern, options: .regularExpression) != nil { return .unusableCharacters }
+        return .valid
+    }
+    
+    public func checkDetail(detail: String?, min: Int, max: Int) -> ValidationResult {
+        guard let detail = detail, !detail.isEmpty else { return .empty }
+        guard detail.count >= min && detail.count <= max else { return .overCharacter }
+        let pattern = "[^a-zA-Z0-9ぁ-んァ-ー亜-黑]"
+        if detail.range(of: pattern, options: .regularExpression) != nil { return .unusableCharacters }
+        return .valid
+    }
 
+    public func checkReview(review: String?, min: Int, max: Int) -> ValidationResult {
+        guard let review = review, !review.isEmpty else { return .empty }
+        guard review.count >= min && review.count <= max else { return .overCharacter }
+        let pattern = "[^a-zA-Z0-9ぁ-んァ-ー亜-黑]"
+        if review.range(of: pattern, options: .regularExpression) != nil { return .unusableCharacters }
+        return .valid
+    }
 }
