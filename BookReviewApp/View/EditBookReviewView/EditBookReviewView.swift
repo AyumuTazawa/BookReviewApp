@@ -8,7 +8,7 @@
 import UIKit
 
 class EditBookReviewView: UIView {
-
+    
     //項目名:本のタイトル
     var bookTitleItemLabel: UILabel = { () -> UILabel in
         let label: UILabel = UILabel()
@@ -37,7 +37,7 @@ class EditBookReviewView: UIView {
         textField.borderStyle = .roundedRect
         return textField
     }()
-
+    
     //項目名:紹介文
     var bookDetailItemLabel: UILabel = { () -> UILabel in
         let label: UILabel = UILabel()
@@ -86,6 +86,12 @@ class EditBookReviewView: UIView {
         return button
     }()
     
+    let spaceAdjustmentLabel: UILabel = { () -> UILabel in
+        let label = UILabel()
+        //label.backgroundColor = .red
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -108,6 +114,7 @@ class EditBookReviewView: UIView {
         self.addSubview(bookDetailTextField)
         self.addSubview(bookReviewItemLabel)
         self.addSubview(bookReviewTextField)
+        self.addSubview(spaceAdjustmentLabel)
         self.addSubview(bookDeleteButton)
         self.addSubview(bookUpdateButton)
         
@@ -167,19 +174,28 @@ class EditBookReviewView: UIView {
             make.top.equalTo(bookReviewItemLabel.snp.bottom).offset(20)
         }
         
-        bookDeleteButton.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.6)
+        spaceAdjustmentLabel.snp.makeConstraints { make in
+            make.width.equalToSuperview().multipliedBy(0.02)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
             make.top.equalTo(bookReviewTextField.snp.bottom).offset(40)
         }
         
         bookUpdateButton.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.6)
+            //make.size.equalTo(100)
+            make.width.equalToSuperview().multipliedBy(0.39)
             make.height.equalTo(50)
-            make.centerX.equalToSuperview()
-            make.top.equalTo(bookDeleteButton.snp.bottom).offset(20)
+            make.top.equalTo(spaceAdjustmentLabel)
+            make.left.equalTo(spaceAdjustmentLabel.snp.right).offset(0)
+        }
+        
+        bookDeleteButton.snp.makeConstraints { make in
+            //make.size.equalTo(100)
+            make.width.equalToSuperview().multipliedBy(0.39)
+            make.height.equalTo(50)
+            make.top.equalTo(spaceAdjustmentLabel)
+            make.right.equalTo(spaceAdjustmentLabel.snp.left).offset(0)
         }
     }
-
+    
 }
