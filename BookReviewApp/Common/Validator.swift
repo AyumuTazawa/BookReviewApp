@@ -81,8 +81,7 @@ class Validator {
     public func checkURL(url: String?, min: Int, max: Int) -> ValidationResult {
         guard let url = url, !url.isEmpty else { return .empty }
         guard url.count >= min && url.count <= max else { return .overCharacter }
-        let pattern = "[^a-zA-Z0-9ぁ-んァ-ー亜-黑]"
-        if url.range(of: pattern, options: .regularExpression) != nil { return .unusableCharacters }
+        if url.isUrl == false { return .unusableCharacters }
         return .valid
     }
     
@@ -101,4 +100,16 @@ class Validator {
         if review.range(of: pattern, options: .regularExpression) != nil { return .unusableCharacters }
         return .valid
     }
+}
+
+extension String {
+
+   var isUrl: Bool {
+       let linkValidation = NSTextCheckingResult.CheckingType.link.rawValue
+       guard let detector = try? NSDataDetector(types: linkValidation) else { return false }
+
+       let results = detector.matches(in: self, options: .reportCompletion, range: NSMakeRange(0, self.count))
+       return results.first?.url != nil
+    }
+
 }
