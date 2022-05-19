@@ -53,7 +53,7 @@ class PostBookReviewViewController: UIViewController {
         let checkTitle = Validator.shared.checkTitle(title: data["title"], min: 5, max: 30)
         if(checkTitle.isValid == false){ errMessage.append(checkTitle.isError) }
         
-        let checkURL = Validator.shared.checkTitle(title: data["url"], min: 5, max: 500)
+        let checkURL = Validator.shared.checkURL(url: data["url"], min: 5, max: 500)
         if(checkURL.isValid == false){ errMessage.append(checkURL.isError) }
         
         let checkDetail = Validator.shared.checkTitle(title: data["detail"], min: 5, max: 500)
