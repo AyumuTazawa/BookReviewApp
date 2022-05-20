@@ -15,12 +15,11 @@ class EditBookReviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .white
         setUpView()
         setUpButton()
     }
-    
+        
     func setUpView() {
         let width = self.view.bounds.width
         let height = self.view.bounds.height
@@ -37,8 +36,8 @@ class EditBookReviewViewController: UIViewController {
     @objc func didTapBookUpdateButton() {
         let title = editBookReviewView.bookTitleTextField.text!
         let url = editBookReviewView.bookURLTextField.text!
-        let detail = editBookReviewView.bookDetailTextField.text!
-        let review = editBookReviewView.bookReviewTextField.text!
+        let detail = editBookReviewView.bookDetailTextView.text!
+        let review = editBookReviewView.bookReviewTextView.text!
         self.updateBookArray = [
             "title": title,
             "url": url,
