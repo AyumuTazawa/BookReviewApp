@@ -12,6 +12,7 @@ class EditBookReviewView: UIView {
     //項目名:本のタイトル
     var bookTitleItemLabel: UILabel = { () -> UILabel in
         let label: UILabel = UILabel()
+        //label.backgroundColor = .gray
         label.text = "タイトル："
         return label
     }()
@@ -20,6 +21,7 @@ class EditBookReviewView: UIView {
         let textField = UITextField()
         textField.placeholder = "本のタイトルを入力してください"
         textField.borderStyle = .roundedRect
+        //textField.backgroundColor = .red
         return textField
     }()
     
@@ -27,6 +29,7 @@ class EditBookReviewView: UIView {
     var bookURLItemLabel: UILabel = { () -> UILabel in
         let label: UILabel = UILabel()
         label.text = "URL："
+        //label.backgroundColor = .systemPink
         return label
     }()
     
@@ -35,6 +38,7 @@ class EditBookReviewView: UIView {
         let textField = UITextField()
         textField.placeholder = "URLを入力してください"
         textField.borderStyle = .roundedRect
+        //textField.backgroundColor = .blue
         return textField
     }()
     
@@ -42,30 +46,32 @@ class EditBookReviewView: UIView {
     var bookDetailItemLabel: UILabel = { () -> UILabel in
         let label: UILabel = UILabel()
         label.text = "紹介文："
+        //label.backgroundColor = .brown
         return label
     }()
     
     //紹介文
-    let bookDetailTextField: UITextField = { () -> UITextField in
-        let textField = UITextField()
-        textField.placeholder = "紹介文を入力してください"
-        textField.borderStyle = .roundedRect
-        return textField
+    let bookDetailTextView: UITextView = { () -> UITextView in
+        let teextView = UITextView()
+        teextView.backgroundColor = .gray
+//        teextView.placeholder = "紹介文を入力してください"
+//        teextView.borderStyle = .roundedRect
+        return teextView
     }()
     
     //項目名:レビュー
     var bookReviewItemLabel: UILabel = { () -> UILabel in
         let label: UILabel = UILabel()
         label.text = "レビュー："
+        //label.backgroundColor = .darkGray
         return label
     }()
     
     //レビュー
-    let bookReviewTextField: UITextField = { () -> UITextField in
-        let textField = UITextField()
-        textField.placeholder = "レビューを入力してください"
-        textField.borderStyle = .roundedRect
-        return textField
+    let bookReviewTextView: UITextView = { () -> UITextView in
+        let textView = UITextView()
+        textView.backgroundColor = .gray
+        return textView
     }()
     
     //削除ボタン
@@ -74,6 +80,7 @@ class EditBookReviewView: UIView {
         button.setTitle("削除", for: .normal)
         button.backgroundColor = UIColor.systemPink
         button.setTitleColor(.systemBlue, for: .normal)
+        //button.backgroundColor = .green
         return button
     }()
     
@@ -106,79 +113,82 @@ class EditBookReviewView: UIView {
     }
     
     func setup() {
-        self.addSubview(bookDetailItemLabel)
+        self.addSubview(bookDetailTextView)
         self.addSubview(bookTitleItemLabel)
         self.addSubview(bookTitleTextField)
         self.addSubview(bookURLItemLabel)
         self.addSubview(bookURLTextField)
-        self.addSubview(bookDetailTextField)
+        self.addSubview(bookDetailItemLabel)
         self.addSubview(bookReviewItemLabel)
-        self.addSubview(bookReviewTextField)
+        self.addSubview(bookReviewTextView)
         self.addSubview(spaceAdjustmentLabel)
         self.addSubview(bookDeleteButton)
         self.addSubview(bookUpdateButton)
         
-        bookDetailItemLabel.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(30)
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-        }
         
         bookURLTextField.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(bookDetailItemLabel.snp.top).offset(-20)
+            make.bottom.equalTo(bookDetailItemLabel.snp.top).offset(-10)
         }
         
         bookURLItemLabel.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(50)
+            make.height.equalTo(20)
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(bookURLTextField.snp.top).offset(-20)
+            make.bottom.equalTo(bookURLTextField.snp.top).offset(-5)
         }
         
         bookTitleTextField.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(bookURLItemLabel.snp.top).offset(-20)
+            make.bottom.equalTo(bookURLItemLabel.snp.top).offset(-10)
         }
         
         bookTitleItemLabel.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(50)
+            make.height.equalTo(20)
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(bookTitleTextField.snp.top).offset(-20)
+            make.bottom.equalTo(bookTitleTextField.snp.top).offset(-5)
         }
         
-        bookDetailTextField.snp.makeConstraints { make in
+        bookDetailItemLabel.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(50)
+            make.height.equalTo(20)
             make.centerX.equalToSuperview()
-            make.top.equalTo(bookDetailItemLabel.snp.bottom).offset(20)
+            make.bottom.equalTo(bookDetailTextView.snp.top).offset(-5)
+            //make.centerY.equalToSuperview()
+        }
+        
+        bookDetailTextView.snp.makeConstraints { make in
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.height.equalTo(100)
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+            //make.top.equalTo(bookDetailItemLabel.snp.bottom).offset(5)
         }
         
         bookReviewItemLabel.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(50)
+            make.height.equalTo(20)
             make.centerX.equalToSuperview()
-            make.top.equalTo(bookDetailTextField.snp.bottom).offset(20)
+            make.top.equalTo(bookDetailTextView.snp.bottom).offset(10)
         }
         
-        bookReviewTextField.snp.makeConstraints { make in
+        bookReviewTextView.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(50)
+            make.height.equalTo(100)
             make.centerX.equalToSuperview()
-            make.top.equalTo(bookReviewItemLabel.snp.bottom).offset(20)
+            make.top.equalTo(bookReviewItemLabel.snp.bottom).offset(5)
         }
         
         spaceAdjustmentLabel.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.02)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
-            make.top.equalTo(bookReviewTextField.snp.bottom).offset(40)
+            make.top.equalTo(bookReviewTextView.snp.bottom).offset(40)
         }
         
         bookUpdateButton.snp.makeConstraints { make in
