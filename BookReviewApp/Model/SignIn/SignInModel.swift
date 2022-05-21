@@ -10,21 +10,27 @@ import Alamofire
 
 protocol signInDelegate {
     
-    func postSignInData(signindata: Dictionary<String,String>)
+    func postSignInData(signindata: Dictionary<String,String>, completion: @escaping (Token?) -> Void)
     
 }
 
 class SignInModel: signInDelegate {
     
-    func postSignInData(signindata: Dictionary<String,String>) {
+    func postSignInData(signindata: Dictionary<String,String>, completion: @escaping (Token?) -> Void) {
         print(signindata)
         var token: Token!
-        var url = "https://api-for-missions-and-railways.herokuapp.com/signin"
-        AF.request(url, method: .get, parameters: signindata).responseData { response in
-            guard let data = response.data else { return }
+        let url = "https://api-for-missions-and-railways.herokuapp.com/users"
+        AF.request(url, method: .post, parameters: signindata, encoding: JSONEncoding.default, headers: nil).responseData { response in
             switch response.result {
             case .success(let data):
-                print("data:\(String(data: data, encoding: .utf8)!)")
+                do{
+                    token = try JSONDecoder().decode(Token.self, from: data)
+                    print("data:\(String(data: data, encoding: .utf8)!)")
+                    completion(token)
+                } catch {
+                    print("エラー")
+                }
+                
             case .failure(let err):
                 print("error:\(err)")
             }
