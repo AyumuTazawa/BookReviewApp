@@ -39,18 +39,29 @@ class SignInViewController: UIViewController {
     }
     
     @objc func didTapsignInButton() {
-        let name: String = signInView.nameTextField.text!
-        let email: String = signInView.emailTextField.text!
-        let password: String = signInView.passwordTextField.text!
+//        let name: String = signInView.nameTextField.text!
+//        let email: String = signInView.emailTextField.text!
+//        let password: String = signInView.passwordTextField.text!
         self.signindata = [
-            "name": name,
-            "email": email,
-            "password": password
+            "name": "hogehoge",
+            "email": "hogehoge@gmail.com",
+            "password": "hogehogehoge"
         ]
-        executeValidationChek(data: signindata)
+        signInModel.postSignInData(signindata: self.signindata) { completion in
+            print("２")
+            print(completion)
+        }
+//        let checkValidationResult: String = executeValidationChek(data: signindata)
+//        if(checkValidationResult == "バリデーションチェック成功") {
+//            print("１")
+//            signInModel.postSignInData(signindata: self.signindata) { completion in
+//                print("２")
+//                print(completion)
+//            }
+//        }
     }
     
-    func executeValidationChek(data: Dictionary<String, String>) -> Void {
+    func executeValidationChek(data: Dictionary<String, String>) -> String {
         self.errMessage.removeAll()
         let checkNameResult = Validator.shared.checkName(name: data["name"], min: 1, max: 50)
         if(checkNameResult.isValid == false){ errMessage.append(checkNameResult.isError) }
@@ -58,7 +69,7 @@ class SignInViewController: UIViewController {
         let mailCheckResult = Validator.shared.checkMail(mail: data["email"])
         if(mailCheckResult.isValid == false){ errMessage.append(mailCheckResult.isError) }
         
-        let passwordCheckResult = Validator.shared.checkPassword(password: data["password"], min: 4, max: 6)
+        let passwordCheckResult = Validator.shared.checkPassword(password: data["password"], min: 4, max: 20)
         if(passwordCheckResult.isValid == false){ errMessage.append(passwordCheckResult.isError) }
         
         if (errMessage.isEmpty){
@@ -67,8 +78,10 @@ class SignInViewController: UIViewController {
             self.present(view, animated: true, completion: nil)
             //dialog.showDialog(vc: self, massegae: "テスト")
             //self.signInModel.postSignInData(signindata: data)
+            return "バリデーションチェック成功"
         }else{
             print(errMessage)
+            return "バリデーションチェック成功"
         }
     }
     
