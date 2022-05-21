@@ -39,26 +39,15 @@ class SignInViewController: UIViewController {
     }
     
     @objc func didTapsignInButton() {
-//        let name: String = signInView.nameTextField.text!
-//        let email: String = signInView.emailTextField.text!
-//        let password: String = signInView.passwordTextField.text!
-        self.signindata = [
-            "name": "hogehoge",
-            "email": "hogehoge@gmail.com",
-            "password": "hogehogehoge"
-        ]
-        signInModel.postSignInData(signindata: self.signindata) { completion in
-            print("２")
-            print(completion)
+        self.signindata["name"] = signInView.nameTextField.text!
+        self.signindata["email"] = signInView.emailTextField.text!
+        self.signindata["password"] = signInView.passwordTextField.text!
+        let checkValidationResult: String = executeValidationChek(data: signindata)
+        if(checkValidationResult == "バリデーションチェック成功") {
+            signInModel.postSignInData(signindata: self.signindata) { completion in
+                print(completion)
+            }
         }
-//        let checkValidationResult: String = executeValidationChek(data: signindata)
-//        if(checkValidationResult == "バリデーションチェック成功") {
-//            print("１")
-//            signInModel.postSignInData(signindata: self.signindata) { completion in
-//                print("２")
-//                print(completion)
-//            }
-//        }
     }
     
     func executeValidationChek(data: Dictionary<String, String>) -> String {
