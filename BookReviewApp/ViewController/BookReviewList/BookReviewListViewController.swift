@@ -8,6 +8,7 @@
 import UIKit
 
 class BookReviewListViewController: UIViewController {
+    let bookReviewListModel: BookReviewListModel = BookReviewListModel()
     var data: [String] = ["a", "b", "c", "d", "e", "f"]
     var bookList: [String] = ["呪術廻戦1巻", "呪術廻戦2巻", "呪術廻戦3巻", "呪術廻戦4巻", "呪術廻戦5巻"]
     var bookDetailData: [String] = ["テスト", "テスト", "テスト", "テスト", "テスト"]
@@ -22,6 +23,9 @@ class BookReviewListViewController: UIViewController {
         super.viewDidLoad()
 
         setupUI()
+        self.bookReviewListModel.fetchBooks(offset: "10") { completion in
+            print(completion)
+        }
         
     }
     
