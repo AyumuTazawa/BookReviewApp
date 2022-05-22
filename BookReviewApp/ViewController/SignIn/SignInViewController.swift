@@ -22,6 +22,12 @@ class SignInViewController: UIViewController {
         view.backgroundColor = .white
         setUpView()
         setUpButton()
+   
+        //画面遷移
+//        let vc = MainTabBarController()
+//        vc.modalTransitionStyle = .crossDissolve
+//        vc.modalPresentationStyle = .fullScreen
+//        self.present(vc, animated: true, completion: nil)
         
     }
     
