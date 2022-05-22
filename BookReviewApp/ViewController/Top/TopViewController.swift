@@ -38,13 +38,27 @@ class TopViewController: UIViewController {
     
     
     @objc func didTapButton(_ sender: UIButton) {
+//        let vc = LoginViewController()
+//        navigationController?.pushViewController(vc, animated: true)
+        
         let vc = LoginViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let loginViewController = UINavigationController.init(rootViewController: vc)
+        loginViewController.modalTransitionStyle = .coverVertical
+        //signInViewController.modalPresentationStyle = .custom
+        self.present(loginViewController, animated: true, completion: nil)
+        
     }
     
     @objc func didTaptoSignInButton(_ sender: UIButton) {
-        let signInViewController = SignInViewController()
-        navigationController?.pushViewController(signInViewController, animated: true)
+//        let signInViewController = SignInViewController()
+//        navigationController?.pushViewController(signInViewController, animated: true)
+        
+        
+        let vc = SignInViewController()
+        let signInViewController = UINavigationController.init(rootViewController: vc)
+        signInViewController.modalTransitionStyle = .coverVertical
+        //signInViewController.modalPresentationStyle = .custom
+        self.present(signInViewController, animated: true, completion: nil)
     }
 
 }
