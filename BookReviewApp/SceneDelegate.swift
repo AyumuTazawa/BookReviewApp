@@ -19,15 +19,63 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //guard let _ = (scene as? UIWindowScene) else { return }
         ///*
         if let windowScene = scene as? UIWindowScene {
+            
+            let token = self.loadToken()
+            if ((token) != nil) {
+                print(token)
+                let window = UIWindow(windowScene: windowScene)
+                window.rootViewController = BookReviewListViewController.init()
+                self.window = window
+                window.makeKeyAndVisible()
+                
+            } else {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = BookReviewListViewController.init()
-            //window.rootViewController = NavigationController.init()
+//            window.rootViewController = EditBookReviewViewController()
+            //window.rootViewController = DetailBookReviewViewController()
+            //window.rootViewController = PostBookReviewViewController()
+            //window.rootViewController = BookReviewListViewController.init()
+            window.rootViewController = NavigationController.init()
             //window.rootViewController = LoginViewController.init()
             self.window = window
             window.makeKeyAndVisible()
+            }
         }
          //*/
     }
+    
+    func loadToken() -> String? {
+         let id = "id"
+         let key = "userToken"
+         
+         let query: [String: Any] = [
+             kSecClass              as String: kSecClassGenericPassword,
+             kSecAttrService        as String: key,
+             kSecAttrAccount        as String: id,
+             kSecMatchLimit         as String: kSecMatchLimitOne,
+             kSecReturnAttributes   as String: true,
+             kSecReturnData         as String: true,
+         ]
+             
+         var item: CFTypeRef?
+         let status = SecItemCopyMatching(query as CFDictionary, &item)
+         switch status {
+         case errSecItemNotFound:
+             return nil
+         case errSecSuccess:
+             guard let item = item,
+                   let value = item[kSecValueData as String] as? Data else {
+                       print("トークンデータなし")
+                       return nil
+                   }
+             guard let loadString = String(data: value, encoding: .utf8) else {
+                 return nil
+             }
+             return loadString
+         default:
+             print("該当なし")
+         }
+         return nil
+     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
