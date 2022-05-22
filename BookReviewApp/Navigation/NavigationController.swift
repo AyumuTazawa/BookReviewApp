@@ -22,3 +22,26 @@ class NavigationController: UIViewController {
     }
     
 }
+
+
+import UIKit
+
+final class MainTabBarController: UITabBarController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        setupTab()
+    }
+
+    func setupTab() {
+        let topViewController = TopViewController()
+        topViewController.tabBarItem = UITabBarItem(title: "tab1", image: .none, tag: 0)
+
+        let bookReviewListViewController = BookReviewListViewController()
+        bookReviewListViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
+
+        viewControllers = [topViewController, bookReviewListViewController]
+    }
+
+}
