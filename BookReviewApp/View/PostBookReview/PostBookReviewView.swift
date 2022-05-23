@@ -46,11 +46,12 @@ class PostBookReviewView: UIView {
     }()
     
     //紹介文
-    let bookDetailTextField: UITextField = { () -> UITextField in
-        let textField = UITextField()
-        textField.placeholder = "紹介文を入力してください"
-        textField.borderStyle = .roundedRect
-        return textField
+    let bookDetailTextField: UITextView = { () -> UITextView in
+        let textView = UITextView()
+        //textView.placeholder = "紹介文を入力してください"
+        //textView.borderStyle = .roundedRect
+        textView.backgroundColor = .gray
+        return textView
     }()
     
     //項目名:レビュー
