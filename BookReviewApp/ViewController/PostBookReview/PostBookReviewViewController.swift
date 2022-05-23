@@ -9,6 +9,7 @@ import UIKit
 
 class PostBookReviewViewController: UIViewController {
     var postBookReview = PostBookReviewView()
+    var postBookReviewModel = PostBookReviewModel()
     var errMessage: [String] = []
     var registerBookArray: Dictionary<String, String> = [:]
 
@@ -44,10 +45,14 @@ class PostBookReviewViewController: UIViewController {
             "detail": detail,
             "review": review
         ]
-        executeValidationChek(data: registerBookArray)
+        let checkValidationResult: Bool = executeValidationChek(data: registerBookArray)
+        if(checkValidationResult) {
+            self.postBookReviewModel.postBookReview(postBookData: self.registerBookArray)
+        }
+        
     }
     
-    func executeValidationChek(data: Dictionary<String, String>) -> Void {
+    func executeValidationChek(data: Dictionary<String, String>) -> Bool {
         self.errMessage.removeAll()
         
         let checkTitle = Validator.shared.checkTitle(title: data["title"], min: 5, max: 30)
@@ -68,9 +73,11 @@ class PostBookReviewViewController: UIViewController {
 //            self.present(view, animated: true, completion: nil)
             //dialog.showDialog(vc: self, massegae: "テスト")
             //self.signInModel.postSignInData(signindata: data)
-            print("成功")
+            print("バリデーションチェック成功")
+            return true
         }else{
             print(errMessage)
+            return false
         }
         
     }
