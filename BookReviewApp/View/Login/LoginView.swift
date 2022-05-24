@@ -21,14 +21,14 @@ class Login: UIView {
     
     let emailTextField: UITextField = { () -> UITextField in
         let mailTextField = UITextField()
-        mailTextField.placeholder = "メールアドレスを入力してください"
+        mailTextField.placeholder = "メールアドレス"
         mailTextField.borderStyle = .roundedRect
         return mailTextField
     }()
     
     let passwordTextField: UITextField = { () -> UITextField in
         let mailTextField = UITextField()
-        mailTextField.placeholder = "確認メールアドレスを入力してください"
+        mailTextField.placeholder = "パスワード"
         mailTextField.borderStyle = .roundedRect
         return mailTextField
     }()
@@ -58,18 +58,18 @@ class Login: UIView {
             make.height.equalTo(50)
         }
         
-        emailTextField.snp.makeConstraints { make in
+        passwordTextField.snp.makeConstraints { make in
             make.width.equalTo(200)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
             make.bottom.equalTo(logInButton.snp.top).offset(-50)
         }
         
-        passwordTextField.snp.makeConstraints { make in
+        emailTextField.snp.makeConstraints { make in
             make.width.equalTo(200)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(emailTextField.snp.top).offset(-50)
+            make.bottom.equalTo(passwordTextField.snp.top).offset(-50)
         }
     }
 
