@@ -73,15 +73,15 @@ class Validator {
     public func checkTitle(title: String?, min: Int, max: Int) -> ValidationResult {
         guard let title = title, !title.isEmpty else { return .empty }
         guard title.count >= min && title.count <= max else { return .overCharacter }
-//        let pattern = "[^a-zA-Z0-9ぁ-んァ-ー亜-黑._%+-]"
-//        if title.range(of: pattern, options: .regularExpression) != nil { return .unusableCharacters }
+        let pattern = "[^a-zA-Z0-9ぁ-んァ-ー亜-黑._%+-]"
+        if title.range(of: pattern, options: .regularExpression) != nil { return .unusableCharacters }
         return .valid
     }
     
     public func checkURL(url: String?, min: Int, max: Int) -> ValidationResult {
         guard let url = url, !url.isEmpty else { return .empty }
-//        guard url.count >= min && url.count <= max else { return .overCharacter }
-//        if url.isUrl == false { return .unusableCharacters }
+        guard url.count >= min && url.count <= max else { return .overCharacter }
+        if url.isUrl == true { return .unusableCharacters }
         return .valid
     }
     
