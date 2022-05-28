@@ -44,6 +44,13 @@ class UserInfoViewController: UIViewController {
     }
     
     @objc func didTapUserInfoButton() {
+        let name = self.userInfoView.nameTextField.text!
+        self.userInfoData = [
+            "name": name
+        ]
+        self.userInfoModel.editUserInfo(userData: userInfoData) { completion in
+            self.userInfoView.nameTextField.text =  completion?.name
+        }
     }
     
 }
