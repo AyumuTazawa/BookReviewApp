@@ -40,11 +40,11 @@ class SignInViewController: UIViewController {
     
     func setUpButton() {
         signInView.signInButton.addTarget(self,
-                                          action: #selector(didTapsignInButton),
+                                          action: #selector(didTapSignInButton),
                                           for: .touchDown)
     }
     
-    @objc func didTapsignInButton() {
+    @objc func didTapSignInButton() {
         self.signindata["name"] = signInView.nameTextField.text!
         self.signindata["email"] = signInView.emailTextField.text!
         self.signindata["password"] = signInView.passwordTextField.text!
@@ -109,8 +109,6 @@ class SignInViewController: UIViewController {
         
         if (errMessage.isEmpty){
             //signInModel.postSignInData(signindata: signindata)
-            let view = UIHostingController(rootView: UserInfoView())
-            self.present(view, animated: true, completion: nil)
             //dialog.showDialog(vc: self, massegae: "テスト")
             //self.signInModel.postSignInData(signindata: data)
             return "バリデーションチェック成功"
