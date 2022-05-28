@@ -10,9 +10,10 @@ import Alamofire
 
 protocol userInfoDelegate {
     func editUserInfo(userData: Dictionary<String,String>, completion: @escaping (Token?) -> Void)
+    func fetchUserInfo(completion: @escaping (UserName?) -> Void)
 }
 
-class UserInfo: userInfoDelegate {
+class UserInfoModel: userInfoDelegate {
     func editUserInfo(userData: Dictionary<String,String>, completion: @escaping (Token?) -> Void) {
         print(userData)
         var token: Token!
@@ -31,6 +32,27 @@ class UserInfo: userInfoDelegate {
                 
             case .failure(let err):
                 print("error:\(err)")
+            }
+        }
+    }
+    
+    func fetchUserInfo(completion: @escaping (UserName?) -> Void) {
+        var userName: UserName!
+        var token = self.loadToken()!
+        
+        token = "Bearer \(token)"
+        print(token)
+        let headers: HTTPHeaders = [
+            "Authorization": token
+        ]
+        let url = "https://api-for-missions-and-railways.herokuapp.com/users"
+        AF.request(url, method: .get, headers: headers).responseJSON { response in
+            guard let data = response.data else { return }
+            do {
+                userName = try JSONDecoder().decode(UserName.self, from: data)
+                completion(userName)
+            } catch {
+                print(response.error)
             }
         }
     }
