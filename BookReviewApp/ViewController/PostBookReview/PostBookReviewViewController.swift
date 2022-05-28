@@ -47,7 +47,7 @@ class PostBookReviewViewController: UIViewController {
         ]
         let checkValidationResult: Bool = executeValidationChek(data: registerBookArray)
         if(checkValidationResult) {
-            self.postBookReviewModel.postBookReview(postBookData: self.registerBookArray)
+            //self.postBookReviewModel.postBookReview(postBookData: self.registerBookArray)
         }
         
     }

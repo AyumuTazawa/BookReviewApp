@@ -16,11 +16,14 @@ class UserInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        view.backgroundColor = .white
+        setUpView()
+        setUpButton()
+        setUpUserInfoData()
     }
     
-
+    
     func setUpView() {
         let width = self.view.bounds.width
         let height = self.view.bounds.height
@@ -30,11 +33,17 @@ class UserInfoViewController: UIViewController {
     
     func setUpButton() {
         userInfoView.editUserInfoButton.addTarget(self,
-                                          action: #selector(didTapUserInfoButton),
-                                          for: .touchDown)
+                                                  action: #selector(didTapUserInfoButton),
+                                                  for: .touchDown)
+    }
+    
+    func setUpUserInfoData() {
+        self.userInfoModel.fetchUserInfo { completion in
+            self.userInfoView.nameTextField.text =  completion?.name
+        }
     }
     
     @objc func didTapUserInfoButton() {
     }
-
+    
 }
