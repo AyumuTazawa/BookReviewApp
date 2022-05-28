@@ -9,23 +9,23 @@ import Foundation
 import Alamofire
 
 protocol userInfoDelegate {
-    func editUserInfo(userData: Dictionary<String,String>, completion: @escaping (Token?) -> Void)
+    func editUserInfo(userData: Dictionary<String,String>, completion: @escaping (UserName?) -> Void)
     func fetchUserInfo(completion: @escaping (UserName?) -> Void)
 }
 
 class UserInfoModel: userInfoDelegate {
-    func editUserInfo(userData: Dictionary<String,String>, completion: @escaping (Token?) -> Void) {
+    func editUserInfo(userData: Dictionary<String,String>, completion: @escaping (UserName?) -> Void) {
         print(userData)
-        var token: Token!
+        var name: UserName!
         let headers = self.createHeaders()
         let url = "https://api-for-missions-and-railways.herokuapp.com/users"
         AF.request(url, method: .put, parameters: userData, encoding: JSONEncoding.default, headers: headers).responseData { response in
             switch response.result {
             case .success(let data):
                 do{
-                    token = try JSONDecoder().decode(Token.self, from: data)
+                    name = try JSONDecoder().decode(UserName.self, from: data)
                     print("data:\(String(data: data, encoding: .utf8)!)")
-                    completion(token)
+                    completion(name)
                 } catch {
                     print("エラー")
                 }
