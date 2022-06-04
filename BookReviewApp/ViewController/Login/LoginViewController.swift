@@ -10,6 +10,7 @@ import UIKit
 class LoginViewController: UIViewController {
     var loginView: Login! = Login()
     var loginModel: LoginModel = LoginModel()
+    var saveUserToken: SaveUserToken = SaveUserToken()
     var errMessage: [String] = []
     var logIndata: Dictionary<String, String> = [:]
     
@@ -45,7 +46,7 @@ class LoginViewController: UIViewController {
         if(checkValidationResult){
             self.loginModel.logIn(logIndata: logIndata) { completion in
                 let token = completion?.token
-                self.saveToken(token: token!)
+                self.saveUserToken.saveToken(token: token!)
                 let vc = MainTabBarController()
                 vc.modalTransitionStyle = .crossDissolve
                 vc.modalPresentationStyle = .fullScreen
@@ -53,44 +54,6 @@ class LoginViewController: UIViewController {
             }
         }
         
-    }
-    
-    func saveToken(token: String) -> Bool {
-        let id = "id"
-        let key = "userToken"
-        guard let data = token.data(using: .utf8) else {
-            return false
-        }
-        
-        let query: [String: Any] = [
-            kSecClass              as String: kSecClassGenericPassword,
-            kSecAttrService        as String: key,
-            kSecAttrAccount        as String: id,
-            kSecValueData          as String: data,
-        ]
-        let status = SecItemCopyMatching(query as CFDictionary, nil)
-        
-        var itemUpdateStatus: OSStatus?
-        
-        print(status)
-        
-        switch status {
-        case errSecItemNotFound:
-            itemUpdateStatus = SecItemAdd(query as CFDictionary, nil)
-            
-        case errSecSuccess:
-            itemUpdateStatus = SecItemUpdate(query as CFDictionary, [kSecValueData as String: data] as CFDictionary)
-            
-        default:
-            print("該当なし")
-        }
-        
-        if itemUpdateStatus == errSecSuccess {
-            print("キーチェーンにトークン保存完了")
-        } else {
-            return false
-        }
-        return true
     }
     
     func executeValidationChek(data: Dictionary<String, String>) -> Bool {
