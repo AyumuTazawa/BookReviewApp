@@ -14,6 +14,7 @@ class SignInViewController: UIViewController {
     var signindata: Dictionary<String, String> = [:]
     var signInView:SignInView = SignInView()
     var signInModel: SignInModel = SignInModel()
+    var saveUserToken: SaveUserToken = SaveUserToken()
     var dialog: Dialog = Dialog()
     
     override func viewDidLoad() {
@@ -53,48 +54,10 @@ class SignInViewController: UIViewController {
             signInModel.postSignInData(signindata: self.signindata) { completion in
                 print(completion)
                 let token = completion?.token
-                self.saveToken(token: token!)
+                self.saveUserToken.saveToken(token: token!)
             }
         }
     }
-
-    func saveToken(token: String) -> Bool {
-            let id = "id"
-            let key = "userToken"
-            guard let data = token.data(using: .utf8) else {
-                return false
-            }
-            
-            let query: [String: Any] = [
-                kSecClass              as String: kSecClassGenericPassword,
-                kSecAttrService        as String: key,
-                kSecAttrAccount        as String: id,
-                kSecValueData          as String: data,
-            ]
-            let status = SecItemCopyMatching(query as CFDictionary, nil)
-            
-            var itemUpdateStatus: OSStatus?
-            
-            print(status)
-
-            switch status {
-            case errSecItemNotFound:
-                itemUpdateStatus = SecItemAdd(query as CFDictionary, nil)
-
-            case errSecSuccess:
-                itemUpdateStatus = SecItemUpdate(query as CFDictionary, [kSecValueData as String: data] as CFDictionary)
-
-            default:
-                print("該当なし")
-            }
-            
-            if itemUpdateStatus == errSecSuccess {
-                print("キーチェーンにトークン保存完了")
-            } else {
-                return false
-            }
-            return true
-        }
     
     func executeValidationChek(data: Dictionary<String, String>) -> String {
         self.errMessage.removeAll()
