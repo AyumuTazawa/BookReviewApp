@@ -17,7 +17,7 @@ class BookReviewListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.title = "Center"
         setupUI()
         executeFetchBooks()
         
@@ -77,4 +77,11 @@ extension BookReviewListViewController: UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected")
+        let selectedBookReview = self.bookDataList[indexPath.row]
+        let id: String = selectedBookReview.id!
+        let detailBookReviewViewController = DetailBookReviewViewController(id: id)
+        self.present(detailBookReviewViewController, animated: true, completion: nil)
+    }
 }
