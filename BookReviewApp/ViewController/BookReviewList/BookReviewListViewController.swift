@@ -39,7 +39,7 @@ class BookReviewListViewController: UIViewController {
     }
     
     func executeFetchBooks() {
-        self.bookReviewListModel.fetchBooks(offset: "0") { completion in
+        self.bookReviewListModel.fetchBooks(offset: "5") { completion in
             print(completion)
             self.bookDataList = completion!
             self.bookReviewTableView.reloadData()
@@ -80,8 +80,14 @@ extension BookReviewListViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected")
         let selectedBookReview = self.bookDataList[indexPath.row]
-        let id: String = selectedBookReview.id!
-        let detailBookReviewViewController = DetailBookReviewViewController(id: id)
-        self.present(detailBookReviewViewController, animated: true, completion: nil)
+        if selectedBookReview.isMine == true {
+            let id: String = selectedBookReview.id!
+            let editBookReviewViewController = EditBookReviewViewController(id: id)
+            self.present(editBookReviewViewController, animated: true, completion: nil)
+        } else {
+            let id: String = selectedBookReview.id!
+            let detailBookReviewViewController = DetailBookReviewViewController(id: id)
+            self.present(detailBookReviewViewController, animated: true, completion: nil)
+        }
     }
 }

@@ -9,15 +9,27 @@ import UIKit
 
 class EditBookReviewViewController: UIViewController {
     
+    let id: String
     var editBookReviewView = EditBookReviewView()
+    var editBookReviewModel: EditBookReviewModel = EditBookReviewModel()
     var errMessage: [String] = []
     var updateBookArray: Dictionary<String, String> = [:]
+    
+    init(id: String) {
+        self.id = id
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setUpView()
         setUpButton()
+        executeFetchBook(id: self.id)
     }
         
     func setUpView() {
@@ -33,6 +45,13 @@ class EditBookReviewViewController: UIViewController {
                                                       for: .touchDown)
     }
     
+    func setUpUIData(data: Book) {
+        self.editBookReviewView.bookTitleTextField.text = data.title
+        self.editBookReviewView.bookURLTextField.text = data.url
+        self.editBookReviewView.bookDetailTextView.text = data.detail
+        self.editBookReviewView.bookReviewTextView.text = data.review
+    }
+    
     @objc func didTapBookUpdateButton() {
         let title = editBookReviewView.bookTitleTextField.text!
         let url = editBookReviewView.bookURLTextField.text!
@@ -45,16 +64,33 @@ class EditBookReviewViewController: UIViewController {
             "review": review
         ]
         executeValidationChek(data: updateBookArray)
+        print(self.id)
+        executeEditBookReview(id: self.id, putBookData: self.updateBookArray)
+    }
+    
+    func executeFetchBook(id: String) {
+        self.editBookReviewModel.fetchBook(id: id) { [self] completion in
+            let fetchData = completion!
+            setUpUIData(data: fetchData)
+        }
+    }
+    
+    func executeEditBookReview(id: String, putBookData: Dictionary<String, String>) {
+        self.editBookReviewModel.editBookReview(id: id, putBookData: putBookData) { [self]  completion in
+            let data = completion
+            setUpUIData(data: data)
+        }
+        
     }
     
     func executeValidationChek(data: Dictionary<String, String>) -> Void {
         self.errMessage.removeAll()
         
-        let checkTitle = Validator.shared.checkTitle(title: data["title"], min: 5, max: 30)
-        if(checkTitle.isValid == false){ errMessage.append(checkTitle.isError) }
+        //let checkTitle = Validator.shared.checkTitle(title: data["title"], min: 5, max: 30)
+        //if(checkTitle.isValid == false){ errMessage.append(checkTitle.isError) }
         
-        let checkURL = Validator.shared.checkURL(url: data["url"], min: 5, max: 500)
-        if(checkURL.isValid == false){ errMessage.append(checkURL.isError) }
+        //let checkURL = Validator.shared.checkURL(url: data["url"], min: 5, max: 500)
+        //if(checkURL.isValid == false){ errMessage.append(checkURL.isError) }
         
         let checkDetail = Validator.shared.checkTitle(title: data["detail"], min: 5, max: 500)
         if(checkDetail.isValid == false){ errMessage.append(checkDetail.isError) }
