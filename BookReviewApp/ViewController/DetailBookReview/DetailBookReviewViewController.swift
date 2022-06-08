@@ -11,7 +11,7 @@ class DetailBookReviewViewController: UIViewController {
 
     let id: String
     var bookReviewDetailView = DetailBookReviewView()
-    var detailBookReviewModel: DetailBookReviewModel = DetailBookReviewModel()
+    var bookApiClient: BookApiClient = BookApiClient()
     
     init(id: String) {
         self.id = id
@@ -47,7 +47,7 @@ class DetailBookReviewViewController: UIViewController {
     }
     
     func executeFetchBook(id: String) {
-        self.detailBookReviewModel.fetchBooks(id: id) { [self] completion in
+        self.bookApiClient.fetchDetailBookReview(id: id) { [self] completion in
             let fetchData = completion!
             setUpUIData(data: fetchData)
         }

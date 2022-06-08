@@ -11,7 +11,7 @@ class EditBookReviewViewController: UIViewController {
     
     let id: String
     var editBookReviewView = EditBookReviewView()
-    var editBookReviewModel: EditBookReviewModel = EditBookReviewModel()
+    var bookApiClient: BookApiClient = BookApiClient()
     var errMessage: [String] = []
     var updateBookArray: Dictionary<String, String> = [:]
     
@@ -69,14 +69,14 @@ class EditBookReviewViewController: UIViewController {
     }
     
     func executeFetchBook(id: String) {
-        self.editBookReviewModel.fetchBook(id: id) { [self] completion in
+        self.bookApiClient.fetchDetailBookReview(id: id) { [self] completion in
             let fetchData = completion!
             setUpUIData(data: fetchData)
         }
     }
     
     func executeEditBookReview(id: String, putBookData: Dictionary<String, String>) {
-        self.editBookReviewModel.editBookReview(id: id, putBookData: putBookData) { [self]  completion in
+        self.bookApiClient.editBookReview(id: id, putBookData: putBookData) { [self]  completion in
             let data = completion
             setUpUIData(data: data)
         }

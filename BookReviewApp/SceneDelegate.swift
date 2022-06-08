@@ -19,7 +19,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //guard let _ = (scene as? UIWindowScene) else { return }
         ///*
         if let windowScene = scene as? UIWindowScene {
+            let window = UIWindow(windowScene: windowScene)
+            window.rootViewController = BookReviewListViewController()
+            //window.rootViewController = NavigationController.init()
+            self.window = window
+            window.makeKeyAndVisible()
             
+            /*
             let token = self.loadToken()
             if ((token) != nil) {
                 print(token)
@@ -39,6 +45,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window = window
             window.makeKeyAndVisible()
             }
+            */
         }
          //*/
     }

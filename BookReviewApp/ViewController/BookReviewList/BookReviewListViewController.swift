@@ -9,7 +9,7 @@ import UIKit
 
 class BookReviewListViewController: UIViewController {
     var bookDataList: [Book] = []
-    let bookReviewListModel: BookReviewListModel = BookReviewListModel()
+    let bookApiClient: BookApiClient = BookApiClient()
     //スクリーンの横幅、縦幅を定義
     let screenWidth = Int(UIScreen.main.bounds.size.width)
     let screenHeight = Int(UIScreen.main.bounds.size.height)
@@ -39,7 +39,7 @@ class BookReviewListViewController: UIViewController {
     }
     
     func executeFetchBooks() {
-        self.bookReviewListModel.fetchBooks(offset: "5") { completion in
+        self.bookApiClient.fetchBooks(offset: "5") { completion in
             print(completion)
             self.bookDataList = completion!
             self.bookReviewTableView.reloadData()
