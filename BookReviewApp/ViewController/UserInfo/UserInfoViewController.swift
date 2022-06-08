@@ -12,7 +12,7 @@ class UserInfoViewController: UIViewController {
     var errMessage: [String] = []
     var userInfoData: Dictionary<String, String> = [:]
     var userInfoView: UserInfoView = UserInfoView()
-    var userInfoModel: UserInfoModel = UserInfoModel()
+    var userApiClient: UserApiClient = UserApiClient()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,7 @@ class UserInfoViewController: UIViewController {
     }
     
     func setUpUserInfoData() {
-        self.userInfoModel.fetchUserInfo { completion in
+        self.userApiClient.fetchUserInfo { completion in
             self.userInfoView.nameTextField.text =  completion?.name
         }
     }
@@ -48,7 +48,7 @@ class UserInfoViewController: UIViewController {
         self.userInfoData = [
             "name": name
         ]
-        self.userInfoModel.editUserInfo(userData: userInfoData) { completion in
+        self.userApiClient.editUserInfo(userData: userInfoData) { completion in
             self.userInfoView.nameTextField.text =  completion?.name
         }
     }

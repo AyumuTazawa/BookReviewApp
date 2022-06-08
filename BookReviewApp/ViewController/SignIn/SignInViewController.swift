@@ -13,7 +13,7 @@ class SignInViewController: UIViewController {
     var errMessage: [String] = []
     var signindata: Dictionary<String, String> = [:]
     var signInView:SignInView = SignInView()
-    var signInModel: SignInModel = SignInModel()
+    var userApiClient: UserApiClient = UserApiClient()
     var saveUserToken: SaveUserToken = SaveUserToken()
     var dialog: Dialog = Dialog()
     
@@ -51,7 +51,7 @@ class SignInViewController: UIViewController {
         self.signindata["password"] = signInView.passwordTextField.text!
         let checkValidationResult: String = executeValidationChek(data: signindata)
         if(checkValidationResult == "バリデーションチェック成功") {
-            signInModel.postSignInData(signindata: self.signindata) { completion in
+            userApiClient.postSignInData(signindata: self.signindata) { completion in
                 print(completion)
                 let token = completion?.token
                 self.saveUserToken.saveToken(token: token!)
