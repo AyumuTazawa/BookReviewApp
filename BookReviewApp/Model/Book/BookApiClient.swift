@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import UIKit
 
 protocol BookApiClientProtocol {
     func fetchBooks(offset: String, completion: @escaping ([Book]?) -> Void)
@@ -16,10 +17,17 @@ protocol BookApiClientProtocol {
 }
 
 class BookApiClient: BookApiClientProtocol {
+    
+    let userToken: UserToken = UserToken()
+    let headers: HTTPHeaders
+    
+    init() {
+        self.headers = self.userToken.getHeaders()
+    }
+    
+    
     func fetchBooks(offset: String, completion: @escaping ([Book]?) -> Void) {
         var book: [Book]!
-        let userToken: UserToken = UserToken()
-        let headers = userToken.getHeaders()
         let url = "https://api-for-missions-and-railways.herokuapp.com/books?offset=\(offset)"
         AF.request(url, method: .get, headers: headers).responseJSON { response in
             guard let data = response.data else { return }
@@ -32,11 +40,9 @@ class BookApiClient: BookApiClientProtocol {
         }
     }
     
+    
     func postBookReview(postBookData: Dictionary<String, String>) {
-        let userToken: UserToken = UserToken()
-        let headers = userToken.getHeaders()
         let url = "https://api-for-missions-and-railways.herokuapp.com/books"
-        
         AF.request(url, method: .post, parameters: postBookData, encoding: JSONEncoding.default, headers: headers).responseData { response in
             switch response.result {
             case .success(let data):
@@ -53,10 +59,9 @@ class BookApiClient: BookApiClientProtocol {
         }
     }
     
+    
     func fetchDetailBookReview(id: String, completion: @escaping (Book?) -> Void) {
         var book: Book!
-        let userToken: UserToken = UserToken()
-        let headers = userToken.getHeaders()
         let url = "https://api-for-missions-and-railways.herokuapp.com/books/\(id)"
         AF.request(url, method: .get, headers: headers).responseJSON { response in
             guard let data = response.data else { return }
@@ -69,13 +74,9 @@ class BookApiClient: BookApiClientProtocol {
         }
     }
     
+    
     func editBookReview(id: String, putBookData: Dictionary<String, String>, completion: @escaping (Book) -> Void) {
-        let userToken: UserToken = UserToken()
-        let headers = userToken.getHeaders()
         let url = "https://api-for-missions-and-railways.herokuapp.com/books/\(id)"
-        
-        print(headers)
-        
         AF.request(url, method: .put, parameters: putBookData, encoding: JSONEncoding.default, headers: headers).responseData { response in
             switch response.result {
             case .success(let data):
@@ -85,12 +86,10 @@ class BookApiClient: BookApiClientProtocol {
                 } catch {
                     print("エラー")
                 }
-                
             case .failure(let err):
                 print("error:\(err)")
             }
         }
     }
-    
     
 }
