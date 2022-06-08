@@ -9,7 +9,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
     var loginView: Login! = Login()
-    var loginModel: LoginModel = LoginModel()
+    var userApiClient: UserApiClient = UserApiClient()
     var saveUserToken: SaveUserToken = SaveUserToken()
     var errMessage: [String] = []
     var logIndata: Dictionary<String, String> = [:]
@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
         self.logIndata["password"] = loginView.passwordTextField.text!
         let checkValidationResult: Bool = executeValidationChek(data: logIndata)
         if(checkValidationResult){
-            self.loginModel.logIn(logIndata: logIndata) { completion in
+            self.userApiClient.logIn(logIndata: logIndata) { completion in
                 let token = completion?.token
                 self.saveUserToken.saveToken(token: token!)
                 let vc = MainTabBarController()
