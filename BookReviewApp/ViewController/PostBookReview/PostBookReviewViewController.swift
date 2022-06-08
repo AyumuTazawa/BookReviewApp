@@ -9,7 +9,7 @@ import UIKit
 
 class PostBookReviewViewController: UIViewController {
     var postBookReview = PostBookReviewView()
-    var postBookReviewModel = PostBookReviewModel()
+    var bookApiClient = BookApiClient()
     var errMessage: [String] = []
     var registerBookArray: Dictionary<String, String> = [:]
 
@@ -47,7 +47,7 @@ class PostBookReviewViewController: UIViewController {
         ]
         let checkValidationResult: Bool = executeValidationChek(data: registerBookArray)
         if(checkValidationResult) {
-            self.postBookReviewModel.postBookReview(postBookData: self.registerBookArray)
+            self.bookApiClient.postBookReview(postBookData: self.registerBookArray)
         }
         
     }
