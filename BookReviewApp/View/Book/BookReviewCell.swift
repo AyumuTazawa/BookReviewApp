@@ -29,7 +29,7 @@ class BookReviewCell: UITableViewCell {
     //背景
     let backView: UIView = { () -> UIView in
         let view = UIView()
-        view.backgroundColor = UIColor.systemGray
+        //view.backgroundColor = UIColor.systemGray
         view.layer.cornerRadius = 5
         return view
     }()
@@ -38,14 +38,14 @@ class BookReviewCell: UITableViewCell {
     let titleLavel: UILabel = { () -> UILabel in
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20)
-        label.backgroundColor = UIColor.brown
+        //label.backgroundColor = UIColor.brown
         return label
     }()
     
     //紹介文
     let detailLabel: UILabel = { () -> UILabel in
         let textView = UILabel()
-        textView.backgroundColor = .red
+        //textView.backgroundColor = .red
         return textView
     }()
     
@@ -72,27 +72,31 @@ class BookReviewCell: UITableViewCell {
         
         titleLavel.snp.makeConstraints { (make) in
             make.height.equalTo(30)
-            make.width.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.95).multipliedBy(0.95)
+            make.centerX.equalToSuperview()
             make.top.equalTo(+0.5)
-            make.left.equalTo(+0.5)
+            ////make.left.equalTo(+0.5)
         }
         detailLabel.snp.makeConstraints { make in
             make.height.equalTo(50)
-            make.width.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.95)
             make.top.equalTo(titleLavel.snp.bottom).offset(0.1)
-            make.left.equalTo(+0.5)
+            make.centerX.equalToSuperview()
+            //make.left.equalTo(+0.5)
         }
         reviewerLabel.snp.makeConstraints { make in
             make.height.equalTo(20)
-            make.width.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.95)
             make.top.equalTo(detailLabel.snp.bottom).offset(0.1)
-            make.left.equalTo(+0.5)
+            make.centerX.equalToSuperview()
+            //make.left.equalTo(+0.5)
         }
         reviewLabel.snp.makeConstraints { make in
-            make.height.equalTo(100)
-            make.width.equalToSuperview()
+            make.height.equalTo(95)
+            make.width.equalToSuperview().multipliedBy(0.95)
             make.top.equalTo(reviewerLabel.snp.bottom).offset(0.1)
-            make.left.equalTo(+0.5)
+            make.centerX.equalToSuperview()
+            //make.left.equalTo(+0.5)
         }
     }
     
