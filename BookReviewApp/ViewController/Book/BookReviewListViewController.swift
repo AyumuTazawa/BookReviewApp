@@ -33,13 +33,12 @@ class BookReviewListViewController: UIViewController {
         // bookReviewTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         bookReviewTableView.register(BookReviewCell.self, forCellReuseIdentifier: "cell")
         //        self.bookReviewTableView.rowHeight = 300
-        self.bookReviewTableView.backgroundColor = .blue
         view.addSubview(bookReviewTableView)
         //self.bookReviewTableView.rowHeight = 300
     }
     
     func executeFetchBooks() {
-        self.bookApiClient.fetchBooks(offset: "5") { completion in
+        self.bookApiClient.fetchBooks(offset: "10") { completion in
             print(completion)
             self.bookDataList = completion!
             self.bookReviewTableView.reloadData()
@@ -68,7 +67,7 @@ extension BookReviewListViewController: UITableViewDelegate, UITableViewDataSour
         } else {
             let bookData = bookDataList[indexPath.row]
             //cell.setupCell(name: name, detail: datail, reviewer: reviewer, review: review)
-            cell.titleLavel.text = bookData.title
+            cell.titleLabel.text = bookData.title
             cell.detailLabel.text = bookData.detail
             cell.reviewerLabel.text = bookData.reviewer
             cell.reviewLabel.text = bookData.review
