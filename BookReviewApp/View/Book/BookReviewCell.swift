@@ -35,7 +35,7 @@ class BookReviewCell: UITableViewCell {
     }()
     
     //タイトル
-    let titleLavel: UILabel = { () -> UILabel in
+    let titleLabel: UILabel = { () -> UILabel in
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20)
         //label.backgroundColor = UIColor.brown
@@ -65,12 +65,12 @@ class BookReviewCell: UITableViewCell {
     }()
     
     func setLayout() {
-        addSubview(titleLavel)
+        addSubview(titleLabel)
         addSubview(detailLabel)
         addSubview(reviewerLabel)
         addSubview(reviewLabel)
         
-        titleLavel.snp.makeConstraints { (make) in
+        titleLabel.snp.makeConstraints { (make) in
             make.height.equalTo(30)
             make.width.equalToSuperview().multipliedBy(0.95).multipliedBy(0.95)
             make.centerX.equalToSuperview()
@@ -80,7 +80,7 @@ class BookReviewCell: UITableViewCell {
         detailLabel.snp.makeConstraints { make in
             make.height.equalTo(50)
             make.width.equalToSuperview().multipliedBy(0.95)
-            make.top.equalTo(titleLavel.snp.bottom).offset(0.1)
+            make.top.equalTo(titleLabel.snp.bottom).offset(0.1)
             make.centerX.equalToSuperview()
             //make.left.equalTo(+0.5)
         }
@@ -101,7 +101,7 @@ class BookReviewCell: UITableViewCell {
     }
     
     func setupCell(title: String) {
-        titleLavel.text = title
+        titleLabel.text = title
     }
     
 }
