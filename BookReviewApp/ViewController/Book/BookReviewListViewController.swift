@@ -17,6 +17,7 @@ class BookReviewListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .gray
         navigationItem.title = "Center"
         setupUI()
         executeFetchBooks()
@@ -30,6 +31,7 @@ class BookReviewListViewController: UIViewController {
                                            height:screenHeight)
         bookReviewTableView.delegate = self
         bookReviewTableView.dataSource = self
+        bookReviewTableView.backgroundColor = .gray
         // bookReviewTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         bookReviewTableView.register(BookReviewCell.self, forCellReuseIdentifier: "cell")
         //        self.bookReviewTableView.rowHeight = 300
@@ -54,7 +56,7 @@ extension BookReviewListViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(200)
+        return CGFloat(315)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
