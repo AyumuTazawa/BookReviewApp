@@ -46,9 +46,10 @@ class BookReviewCell: UITableViewCell {
     
     //紹介文
     let detailLabel: UILabel = { () -> UILabel in
-        let textView = UILabel()
-        //textView.backgroundColor = .red
-        return textView
+        let label = UILabel()
+        //label.backgroundColor = .red
+        label.numberOfLines = 4
+        return label
     }()
     
     //レビューした人
@@ -84,14 +85,14 @@ class BookReviewCell: UITableViewCell {
         backView.addSubview(reviewLabel)
         
         titleLabel.snp.makeConstraints { (make) in
-            make.height.equalTo(30)
+            make.height.equalTo(35)
             make.width.equalToSuperview().multipliedBy(0.999).multipliedBy(0.95)
             make.centerX.equalToSuperview()
             make.top.equalTo(+0.5)
             ////make.left.equalTo(+0.5)
         }
         detailLabel.snp.makeConstraints { make in
-            make.height.equalTo(50)
+            make.height.equalTo(100)
             make.width.equalToSuperview().multipliedBy(0.999)
             make.top.equalTo(titleLabel.snp.bottom).offset(0.1)
             make.centerX.equalToSuperview()
@@ -105,7 +106,7 @@ class BookReviewCell: UITableViewCell {
             //make.left.equalTo(+0.5)
         }
         reviewLabel.snp.makeConstraints { make in
-            make.height.equalTo(95)
+            make.height.equalTo(150)
             make.width.equalToSuperview().multipliedBy(0.999)
             make.top.equalTo(reviewerLabel.snp.bottom).offset(0.1)
             make.centerX.equalToSuperview()
