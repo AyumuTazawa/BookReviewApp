@@ -13,6 +13,7 @@ class BookReviewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setBacView()
         setLayout()
 
     }
@@ -29,16 +30,17 @@ class BookReviewCell: UITableViewCell {
     //背景
     let backView: UIView = { () -> UIView in
         let view = UIView()
-        //view.backgroundColor = UIColor.systemGray
+        view.backgroundColor = UIColor.systemGreen
         view.layer.cornerRadius = 5
         return view
     }()
     
     //タイトル
-    let titleLavel: UILabel = { () -> UILabel in
+    let titleLabel: UILabel = { () -> UILabel in
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20)
         //label.backgroundColor = UIColor.brown
+        label.font = UIFont.boldSystemFont(ofSize: 25)
         return label
     }()
     
@@ -64,36 +66,47 @@ class BookReviewCell: UITableViewCell {
         return label
     }()
     
-    func setLayout() {
-        addSubview(titleLavel)
-        addSubview(detailLabel)
-        addSubview(reviewerLabel)
-        addSubview(reviewLabel)
+    func setBacView() {
+        addSubview(backView)
         
-        titleLavel.snp.makeConstraints { (make) in
+        backView.snp.makeConstraints { make in
+            make.width.equalToSuperview().multipliedBy(0.98)
+            make.height.equalToSuperview().multipliedBy(0.97)
+            make.center.equalToSuperview()
+            
+        }
+    }
+    
+    func setLayout() {
+        backView.addSubview(titleLabel)
+        backView.addSubview(detailLabel)
+        backView.addSubview(reviewerLabel)
+        backView.addSubview(reviewLabel)
+        
+        titleLabel.snp.makeConstraints { (make) in
             make.height.equalTo(30)
-            make.width.equalToSuperview().multipliedBy(0.95).multipliedBy(0.95)
+            make.width.equalToSuperview().multipliedBy(0.999).multipliedBy(0.95)
             make.centerX.equalToSuperview()
             make.top.equalTo(+0.5)
             ////make.left.equalTo(+0.5)
         }
         detailLabel.snp.makeConstraints { make in
             make.height.equalTo(50)
-            make.width.equalToSuperview().multipliedBy(0.95)
-            make.top.equalTo(titleLavel.snp.bottom).offset(0.1)
+            make.width.equalToSuperview().multipliedBy(0.999)
+            make.top.equalTo(titleLabel.snp.bottom).offset(0.1)
             make.centerX.equalToSuperview()
             //make.left.equalTo(+0.5)
         }
         reviewerLabel.snp.makeConstraints { make in
             make.height.equalTo(20)
-            make.width.equalToSuperview().multipliedBy(0.95)
+            make.width.equalToSuperview().multipliedBy(0.999)
             make.top.equalTo(detailLabel.snp.bottom).offset(0.1)
             make.centerX.equalToSuperview()
             //make.left.equalTo(+0.5)
         }
         reviewLabel.snp.makeConstraints { make in
             make.height.equalTo(95)
-            make.width.equalToSuperview().multipliedBy(0.95)
+            make.width.equalToSuperview().multipliedBy(0.999)
             make.top.equalTo(reviewerLabel.snp.bottom).offset(0.1)
             make.centerX.equalToSuperview()
             //make.left.equalTo(+0.5)
@@ -101,7 +114,7 @@ class BookReviewCell: UITableViewCell {
     }
     
     func setupCell(title: String) {
-        titleLavel.text = title
+        titleLabel.text = title
     }
     
 }
