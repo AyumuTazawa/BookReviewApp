@@ -17,7 +17,7 @@ class BookReviewListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .gray
+        view.backgroundColor = .purple
         navigationItem.title = "Center"
         setupUI()
         executeFetchBooks()
@@ -31,7 +31,8 @@ class BookReviewListViewController: UIViewController {
                                            height:screenHeight)
         bookReviewTableView.delegate = self
         bookReviewTableView.dataSource = self
-        bookReviewTableView.backgroundColor = .gray
+        //bookReviewTableView.backgroundColor = .gray
+
         // bookReviewTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         bookReviewTableView.register(BookReviewCell.self, forCellReuseIdentifier: "cell")
         //        self.bookReviewTableView.rowHeight = 300
@@ -61,7 +62,6 @@ extension BookReviewListViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BookReviewCell
-        //let name = bookList[indexPath.row]
         
         if bookDataList.count == 0 {
             
@@ -69,10 +69,12 @@ extension BookReviewListViewController: UITableViewDelegate, UITableViewDataSour
         } else {
             let bookData = bookDataList[indexPath.row]
             //cell.setupCell(name: name, detail: datail, reviewer: reviewer, review: review)
+            let reviewer = "by " + bookData.reviewer!
             cell.titleLabel.text = bookData.title
             cell.detailLabel.text = bookData.detail
-            cell.reviewerLabel.text = bookData.reviewer
+            cell.reviewerLabel.text = reviewer
             cell.reviewLabel.text = bookData.review
+            cell.reviewLabel.sizeToFit()
             //cell.setupCell(title: name)
         }
         return cell

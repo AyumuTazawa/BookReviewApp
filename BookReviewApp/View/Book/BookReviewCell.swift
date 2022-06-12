@@ -13,8 +13,9 @@ class BookReviewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setBacView()
+        //setBacView()
         setLayout()
+        //setBacView()
 
     }
     
@@ -39,7 +40,7 @@ class BookReviewCell: UITableViewCell {
     let titleLabel: UILabel = { () -> UILabel in
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20)
-        //label.backgroundColor = UIColor.brown
+        ////label.backgroundColor = UIColor.brown
         label.font = UIFont.boldSystemFont(ofSize: 25)
         return label
     }()
@@ -47,8 +48,9 @@ class BookReviewCell: UITableViewCell {
     //紹介文
     let detailLabel: UILabel = { () -> UILabel in
         let label = UILabel()
-        //label.backgroundColor = .red
+        label.backgroundColor = .red
         label.numberOfLines = 4
+        label.font = UIFont(name: "PingFangHK-Regular", size: 15)
         return label
     }()
     
@@ -56,6 +58,7 @@ class BookReviewCell: UITableViewCell {
     let reviewerLabel: UILabel = { () -> UILabel in
         let label = UILabel()
         label.backgroundColor = .green
+        label.font = UIFont(name: "AvenirNextCondensed-Italic", size: 20)
         return label
     }()
     
@@ -64,12 +67,12 @@ class BookReviewCell: UITableViewCell {
         let label = UILabel()
         label.backgroundColor = .systemPink
         label.numberOfLines = 4
+        label.font = UIFont(name: "PingFangHK-Regular", size: 15)
         return label
     }()
     
     func setBacView() {
         addSubview(backView)
-        
         backView.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.98)
             make.height.equalToSuperview().multipliedBy(0.97)
@@ -79,35 +82,39 @@ class BookReviewCell: UITableViewCell {
     }
     
     func setLayout() {
-        backView.addSubview(titleLabel)
-        backView.addSubview(detailLabel)
-        backView.addSubview(reviewerLabel)
-        backView.addSubview(reviewLabel)
+        addSubview(titleLabel)
+        addSubview(detailLabel)
+        addSubview(reviewerLabel)
+        addSubview(reviewLabel)
+//        backView.addSubview(titleLabel)
+//        backView.addSubview(detailLabel)
+//        backView.addSubview(reviewerLabel)
+//        backView.addSubview(reviewLabel)
         
         titleLabel.snp.makeConstraints { (make) in
             make.height.equalTo(35)
-            make.width.equalToSuperview().multipliedBy(0.999).multipliedBy(0.95)
+            make.width.equalToSuperview().multipliedBy(0.95)
             make.centerX.equalToSuperview()
             make.top.equalTo(+0.5)
             ////make.left.equalTo(+0.5)
         }
         detailLabel.snp.makeConstraints { make in
             make.height.equalTo(100)
-            make.width.equalToSuperview().multipliedBy(0.999)
+            make.width.equalToSuperview().multipliedBy(0.95)
             make.top.equalTo(titleLabel.snp.bottom).offset(0.1)
             make.centerX.equalToSuperview()
             //make.left.equalTo(+0.5)
         }
         reviewerLabel.snp.makeConstraints { make in
             make.height.equalTo(20)
-            make.width.equalToSuperview().multipliedBy(0.999)
-            make.top.equalTo(detailLabel.snp.bottom).offset(0.1)
+            make.width.equalToSuperview().multipliedBy(0.95)
+            make.top.equalTo(detailLabel.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
             //make.left.equalTo(+0.5)
         }
         reviewLabel.snp.makeConstraints { make in
-            make.height.equalTo(150)
-            make.width.equalToSuperview().multipliedBy(0.999)
+            //make.height.equalTo(130)
+            make.width.equalToSuperview().multipliedBy(0.95)
             make.top.equalTo(reviewerLabel.snp.bottom).offset(0.1)
             make.centerX.equalToSuperview()
             //make.left.equalTo(+0.5)
