@@ -13,7 +13,7 @@ class BookReviewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        //setBacView()
+        setBacView()
         setLayout()
         //setBacView()
 
@@ -75,27 +75,29 @@ class BookReviewCell: UITableViewCell {
         addSubview(backView)
         backView.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.98)
-            make.height.equalToSuperview().multipliedBy(0.97)
-            make.center.equalToSuperview()
+            //make.height.equalToSuperview().multipliedBy(0.97)
+            //make.center.equalToSuperview()
+            make.edges.equalTo(self).inset(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
             
         }
     }
     
     func setLayout() {
-        addSubview(titleLabel)
-        addSubview(detailLabel)
-        addSubview(reviewerLabel)
-        addSubview(reviewLabel)
-//        backView.addSubview(titleLabel)
-//        backView.addSubview(detailLabel)
-//        backView.addSubview(reviewerLabel)
-//        backView.addSubview(reviewLabel)
+//        addSubview(titleLabel)
+//        addSubview(detailLabel)
+//        addSubview(reviewerLabel)
+//        addSubview(reviewLabel)
+        backView.addSubview(titleLabel)
+        backView.addSubview(detailLabel)
+        backView.addSubview(reviewerLabel)
+        backView.addSubview(reviewLabel)
         
         titleLabel.snp.makeConstraints { (make) in
             make.height.equalTo(35)
             make.width.equalToSuperview().multipliedBy(0.95)
             make.centerX.equalToSuperview()
-            make.top.equalTo(+0.5)
+            //make.top.equalTo(+0.5)
+            //make.edges.equalTo(backView).inset(ConstraintInsets(top: 10, left: 10, bottom: 0, right: 10))
             ////make.left.equalTo(+0.5)
         }
         detailLabel.snp.makeConstraints { make in
@@ -103,6 +105,7 @@ class BookReviewCell: UITableViewCell {
             make.width.equalToSuperview().multipliedBy(0.95)
             make.top.equalTo(titleLabel.snp.bottom).offset(0.1)
             make.centerX.equalToSuperview()
+            //make.edges.equalTo(backView).inset(ConstraintInsets(top: 10, left: 10, bottom: 0, right: 10))
             //make.left.equalTo(+0.5)
         }
         reviewerLabel.snp.makeConstraints { make in
@@ -110,6 +113,7 @@ class BookReviewCell: UITableViewCell {
             make.width.equalToSuperview().multipliedBy(0.95)
             make.top.equalTo(detailLabel.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
+            //make.edges.equalTo(backView).inset(ConstraintInsets(top: 10, left: 10, bottom: 0, right: 10))
             //make.left.equalTo(+0.5)
         }
         reviewLabel.snp.makeConstraints { make in
@@ -117,6 +121,7 @@ class BookReviewCell: UITableViewCell {
             make.width.equalToSuperview().multipliedBy(0.95)
             make.top.equalTo(reviewerLabel.snp.bottom).offset(0.1)
             make.centerX.equalToSuperview()
+            //make.edges.equalTo(backView).inset(UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10))
             //make.left.equalTo(+0.5)
         }
     }
