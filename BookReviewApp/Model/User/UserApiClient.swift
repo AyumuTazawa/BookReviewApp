@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 protocol UserApiClientProtocol {
-    func postSignInData(signindata: Dictionary<String,String>, completion: @escaping (Token?) -> Void)
+    func postSignInData(signindata: SignIn, completion: @escaping (Token?) -> Void)
     func logIn(logIndata: Login, completion: @escaping (Token?) -> Void)
     func fetchUserInfo(completion: @escaping (UserNameStruct?) -> Void)
     func editUserInfo(userData: Dictionary<String,String>, completion: @escaping (UserNameStruct?) -> Void)
@@ -24,11 +24,11 @@ class UserApiClient {
         self.headers = self.userToken.getHeaders()
     }
     
-    func postSignInData(signindata: Dictionary<String,String>, completion: @escaping (Token?) -> Void) {
+    func postSignInData(signindata: SignIn, completion: @escaping (Token?) -> Void) {
         print(signindata)
         var token: Token!
         let url = "https://api-for-missions-and-railways.herokuapp.com/users"
-        AF.request(url, method: .post, parameters: signindata, encoding: JSONEncoding.default, headers: nil).responseData { response in
+        AF.request(url, method: .post, parameters: signindata.makePostData(), encoding: JSONEncoding.default, headers: nil).responseData { response in
             switch response.result {
             case .success(let data):
                 do{
