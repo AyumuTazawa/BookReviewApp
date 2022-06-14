@@ -8,7 +8,7 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    var loginView: Login! = Login()
+    var loginView: LoginView! = LoginView()
     var userApiClient: UserApiClient = UserApiClient()
     var saveUserToken: SaveUserToken = SaveUserToken()
     var errMessage: [String] = []
@@ -27,7 +27,7 @@ class LoginViewController: UIViewController {
     func setUpView() {
         let width = self.view.bounds.width
         let height = self.view.bounds.height
-        self.loginView = Login()
+        self.loginView = LoginView()
         loginView.frame = CGRect(x: 0, y: 0, width: width, height: height)
         self.view.addSubview(loginView)
     }
