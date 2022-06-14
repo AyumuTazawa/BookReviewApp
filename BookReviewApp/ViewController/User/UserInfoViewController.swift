@@ -10,7 +10,6 @@ import UIKit
 class UserInfoViewController: UIViewController {
     
     var errMessage: [String] = []
-    var userInfoData: Dictionary<String, String> = [:]
     var userInfoView: UserInfoView = UserInfoView()
     var userApiClient: UserApiClient = UserApiClient()
     
