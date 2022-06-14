@@ -11,7 +11,6 @@ import SwiftUI
 class SignInViewController: UIViewController {
     
     var errMessage: [String] = []
-    var signindata: Dictionary<String, String> = [:]
     var signInView:SignInView = SignInView()
     var userApiClient: UserApiClient = UserApiClient()
     var saveUserToken: SaveUserToken = SaveUserToken()
@@ -46,12 +45,14 @@ class SignInViewController: UIViewController {
     }
     
     @objc func didTapSignInButton() {
-        self.signindata["name"] = signInView.nameTextField.text!
-        self.signindata["email"] = signInView.emailTextField.text!
-        self.signindata["password"] = signInView.passwordTextField.text!
-        let checkValidationResult: String = executeValidationChek(data: signindata)
+        let name = UserName(name: signInView.nameTextField.text!)
+        let email = Email(email: signInView.emailTextField.text!)
+        let password = Password(password: signInView.passwordTextField.text!)
+        let signIn = SignIn(name: name, email: email, password: password)
+        
+        let checkValidationResult: String = executeValidationChek(data: signIn.makePostData())
         if(checkValidationResult == "バリデーションチェック成功") {
-            userApiClient.postSignInData(signindata: self.signindata) { completion in
+            userApiClient.postSignInData(signindata: signIn) { completion in
                 print(completion)
                 let token = completion?.token
                 self.saveUserToken.saveToken(token: token!)
