@@ -10,7 +10,6 @@ import UIKit
 class UserInfoViewController: UIViewController {
     
     var errMessage: [String] = []
-    var userInfoData: Dictionary<String, String> = [:]
     var userInfoView: UserInfoView = UserInfoView()
     var userApiClient: UserApiClient = UserApiClient()
     
@@ -44,11 +43,9 @@ class UserInfoViewController: UIViewController {
     }
     
     @objc func didTapUserInfoButton() {
-        let name = self.userInfoView.nameTextField.text!
-        self.userInfoData = [
-            "name": name
-        ]
-        self.userApiClient.editUserInfo(userData: userInfoData) { completion in
+        let name = UserName(name: self.userInfoView.nameTextField.text!)
+        
+        self.userApiClient.editUserInfo(userData: name) { completion in
             self.userInfoView.nameTextField.text =  completion?.name
         }
     }

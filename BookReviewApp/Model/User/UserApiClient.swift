@@ -12,7 +12,7 @@ protocol UserApiClientProtocol {
     func postSignInData(signindata: SignIn, completion: @escaping (Token?) -> Void)
     func logIn(logIndata: Login, completion: @escaping (Token?) -> Void)
     func fetchUserInfo(completion: @escaping (UserNameStruct?) -> Void)
-    func editUserInfo(userData: Dictionary<String,String>, completion: @escaping (UserNameStruct?) -> Void)
+    func editUserInfo(userData: UserName, completion: @escaping (UserNameStruct?) -> Void)
 }
 
 class UserApiClient {
@@ -84,12 +84,12 @@ class UserApiClient {
     }
     
     
-    func editUserInfo(userData: Dictionary<String,String>, completion: @escaping (UserNameStruct?) -> Void) {
+    func editUserInfo(userData: UserName, completion: @escaping (UserNameStruct?) -> Void) {
         print(userData)
         var name: UserNameStruct!
         let headers = self.userToken.getHeaders()
         let url = "https://api-for-missions-and-railways.herokuapp.com/users"
-        AF.request(url, method: .put, parameters: userData, encoding: JSONEncoding.default, headers: headers).responseData { response in
+        AF.request(url, method: .put, parameters: userData.makePostData(), encoding: JSONEncoding.default, headers: headers).responseData { response in
             switch response.result {
             case .success(let data):
                 do{

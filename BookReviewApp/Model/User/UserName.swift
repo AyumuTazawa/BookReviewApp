@@ -18,4 +18,11 @@ class UserName {
     func toString() -> String {
         return self.name
     }
+    
+    func makePostData() -> Dictionary<String,String> {
+        var editUserInfodata: Dictionary<String,String> = [:]
+        editUserInfodata["name"] = self.name
+        
+        return editUserInfodata
+    }
 }
