@@ -10,9 +10,9 @@ import Alamofire
 
 protocol UserApiClientProtocol {
     func postSignInData(signindata: Dictionary<String,String>, completion: @escaping (Token?) -> Void)
-    func logIn(logIndata: Dictionary<String,String>, completion: @escaping (Token?) -> Void)
-    func fetchUserInfo(completion: @escaping (UserName?) -> Void)
-    func editUserInfo(userData: Dictionary<String,String>, completion: @escaping (UserName?) -> Void)
+    func logIn(logIndata: Login, completion: @escaping (Token?) -> Void)
+    func fetchUserInfo(completion: @escaping (UserNameStruct?) -> Void)
+    func editUserInfo(userData: Dictionary<String,String>, completion: @escaping (UserNameStruct?) -> Void)
 }
 
 class UserApiClient {
@@ -46,10 +46,10 @@ class UserApiClient {
     }
     
     
-    func logIn(logIndata: Dictionary<String, String>, completion: @escaping (Token?) -> Void) {
+    func logIn(logIndata: Login, completion: @escaping (Token?) -> Void) {
         var token: Token!
         let url = "https://api-for-missions-and-railways.herokuapp.com/signin"
-        AF.request(url, method: .post, parameters: logIndata, encoding: JSONEncoding.default, headers: nil).responseData { response in
+        AF.request(url, method: .post, parameters: logIndata.postData(), encoding: JSONEncoding.default, headers: nil).responseData { response in
             switch response.result {
             case .success(let data):
                 do{
@@ -68,14 +68,14 @@ class UserApiClient {
     }
     
     
-    func fetchUserInfo(completion: @escaping (UserName?) -> Void) {
-        var userName: UserName!
+    func fetchUserInfo(completion: @escaping (UserNameStruct?) -> Void) {
+        var userName: UserNameStruct!
         let headers = self.userToken.getHeaders()
         let url = "https://api-for-missions-and-railways.herokuapp.com/users"
         AF.request(url, method: .get, headers: headers).responseJSON { response in
             guard let data = response.data else { return }
             do {
-                userName = try JSONDecoder().decode(UserName.self, from: data)
+                userName = try JSONDecoder().decode(UserNameStruct.self, from: data)
                 completion(userName)
             } catch {
                 print(response.error)
@@ -84,16 +84,16 @@ class UserApiClient {
     }
     
     
-    func editUserInfo(userData: Dictionary<String,String>, completion: @escaping (UserName?) -> Void) {
+    func editUserInfo(userData: Dictionary<String,String>, completion: @escaping (UserNameStruct?) -> Void) {
         print(userData)
-        var name: UserName!
+        var name: UserNameStruct!
         let headers = self.userToken.getHeaders()
         let url = "https://api-for-missions-and-railways.herokuapp.com/users"
         AF.request(url, method: .put, parameters: userData, encoding: JSONEncoding.default, headers: headers).responseData { response in
             switch response.result {
             case .success(let data):
                 do{
-                    name = try JSONDecoder().decode(UserName.self, from: data)
+                    name = try JSONDecoder().decode(UserNameStruct.self, from: data)
                     print("data:\(String(data: data, encoding: .utf8)!)")
                     completion(name)
                 } catch {

@@ -45,7 +45,7 @@ class LoginViewController: UIViewController {
         
         let checkValidationResult: Bool = executeValidationChek(data: login.postData())
         if(checkValidationResult){
-            self.userApiClient.logIn(logIndata: login.postData()) { completion in
+            self.userApiClient.logIn(logIndata: login) { completion in
                 let token = completion?.token
                 self.saveUserToken.saveToken(token: token!)
                 let vc = MainTabBarController()
