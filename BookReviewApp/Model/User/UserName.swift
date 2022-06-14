@@ -7,6 +7,15 @@
 
 import Foundation
 
-struct UserName: Codable {
-    var name: String!
+class UserName {
+    
+    let name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    func toString() -> String {
+        return self.name
+    }
 }
