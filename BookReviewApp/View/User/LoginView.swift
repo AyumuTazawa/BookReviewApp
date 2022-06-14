@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class Login: UIView {
+class LoginView: UIView {
     
     public var logInButton: UIButton! = { () -> UIButton in
         let button = UIButton()
