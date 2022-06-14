@@ -12,7 +12,6 @@ class LoginViewController: UIViewController {
     var userApiClient: UserApiClient = UserApiClient()
     var saveUserToken: SaveUserToken = SaveUserToken()
     var errMessage: [String] = []
-    var logIndata: Dictionary<String, String> = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,11 +39,13 @@ class LoginViewController: UIViewController {
     
     @objc func didTapButton() {
         print("ボタンがタップされました")
-        self.logIndata["email"] = loginView.emailTextField.text!
-        self.logIndata["password"] = loginView.passwordTextField.text!
-        let checkValidationResult: Bool = executeValidationChek(data: logIndata)
+        let email: Email = Email(email: loginView.emailTextField.text!)
+        let password: Password = Password(password: loginView.passwordTextField.text!)
+        let login: Login = Login(email: email, password: password)
+        
+        let checkValidationResult: Bool = executeValidationChek(data: login.postData())
         if(checkValidationResult){
-            self.userApiClient.logIn(logIndata: logIndata) { completion in
+            self.userApiClient.logIn(logIndata: login.postData()) { completion in
                 let token = completion?.token
                 self.saveUserToken.saveToken(token: token!)
                 let vc = MainTabBarController()
@@ -53,7 +54,6 @@ class LoginViewController: UIViewController {
                 self.present(vc, animated: true, completion: nil)
             }
         }
-        
     }
     
     func executeValidationChek(data: Dictionary<String, String>) -> Bool {
