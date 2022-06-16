@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class BookReviewListViewController: UIViewController {
     var bookDataList: [Book] = []
@@ -25,10 +26,10 @@ class BookReviewListViewController: UIViewController {
     }
     
     func setupUI() {
-        bookReviewTableView.frame = CGRect(x:0,
-                                           y:0,
-                                           width:screenWidth,
-                                           height:screenHeight)
+        //bookReviewTableView.frame = CGRect(x:0,
+//                                           y:0,
+//                                           width:screenWidth,
+//                                           height:screenHeight)
         bookReviewTableView.delegate = self
         bookReviewTableView.dataSource = self
         //bookReviewTableView.backgroundColor = .gray
@@ -36,12 +37,19 @@ class BookReviewListViewController: UIViewController {
         // bookReviewTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         bookReviewTableView.register(BookReviewCell.self, forCellReuseIdentifier: "cell")
         //        self.bookReviewTableView.rowHeight = 300
-        view.addSubview(bookReviewTableView)
+        
         //self.bookReviewTableView.rowHeight = 300
+
+        
+        view.addSubview(bookReviewTableView)
+        
+        bookReviewTableView.snp.makeConstraints { make in
+            make.edges.equalTo(view).inset(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+        }
     }
     
     func executeFetchBooks() {
-        self.bookApiClient.fetchBooks(offset: "10") { completion in
+        self.bookApiClient.fetchBooks(offset: "20") { completion in
             print(completion)
             self.bookDataList = completion!
             self.bookReviewTableView.reloadData()
@@ -57,7 +65,9 @@ extension BookReviewListViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(315)
+        //return CGFloat(315)
+        tableView.estimatedRowHeight
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -72,6 +82,7 @@ extension BookReviewListViewController: UITableViewDelegate, UITableViewDataSour
             let reviewer = "by " + bookData.reviewer!
             cell.titleLabel.text = bookData.title
             cell.detailLabel.text = bookData.detail
+            cell.detailLabel.sizeToFit()
             cell.reviewerLabel.text = reviewer
             cell.reviewLabel.text = bookData.review
             cell.reviewLabel.sizeToFit()
@@ -92,5 +103,10 @@ extension BookReviewListViewController: UITableViewDelegate, UITableViewDataSour
             let detailBookReviewViewController = DetailBookReviewViewController(id: id)
             self.present(detailBookReviewViewController, animated: true, completion: nil)
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
     }
+    
+    
 }
