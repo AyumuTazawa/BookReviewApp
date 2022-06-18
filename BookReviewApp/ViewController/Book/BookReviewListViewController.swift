@@ -18,7 +18,7 @@ class BookReviewListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .purple
+        view.backgroundColor = .white
         navigationItem.title = "Center"
         setupUI()
         executeFetchBooks()
@@ -26,23 +26,15 @@ class BookReviewListViewController: UIViewController {
     }
     
     func setupUI() {
-        //bookReviewTableView.frame = CGRect(x:0,
-//                                           y:0,
-//                                           width:screenWidth,
-//                                           height:screenHeight)
         bookReviewTableView.delegate = self
         bookReviewTableView.dataSource = self
         bookReviewTableView.rowHeight = UITableView.automaticDimension
-        //bookReviewTableView.backgroundColor = .gray
-
         // bookReviewTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         bookReviewTableView.register(BookReviewCell.self, forCellReuseIdentifier: "cell")
         //        self.bookReviewTableView.rowHeight = 300
         
         //self.bookReviewTableView.rowHeight = 300
         bookReviewTableView.separatorStyle = .none
-
-        
         view.addSubview(bookReviewTableView)
         
         bookReviewTableView.snp.makeConstraints { make in
@@ -112,6 +104,5 @@ extension BookReviewListViewController: UITableViewDelegate, UITableViewDataSour
         tableView.deselectRow(at: indexPath, animated: true)
         
     }
-    
     
 }
