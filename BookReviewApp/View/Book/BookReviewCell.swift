@@ -26,7 +26,7 @@ class BookReviewCell: UITableViewCell {
     
     override func layoutSubviews() {
         contentView.backgroundColor = .clear
-        backgroundColor = .clear
+        backgroundColor = .gray
     }
     
     //背景
@@ -75,7 +75,7 @@ class BookReviewCell: UITableViewCell {
     func setBacView() {
         addSubview(backView)
         backView.snp.makeConstraints { make in
-            make.edges.equalTo(self).inset(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+            make.edges.equalTo(self).inset(UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2))
         }
     }
     
