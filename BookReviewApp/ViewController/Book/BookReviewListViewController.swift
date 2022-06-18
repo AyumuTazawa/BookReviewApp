@@ -98,7 +98,7 @@ extension BookReviewListViewController: UITableViewDelegate, UITableViewDataSour
         } else {
             let id: String = selectedBookReview.id!
             let detailBookReviewViewController = DetailBookReviewViewController(id: id)
-            self.present(detailBookReviewViewController, animated: true, completion: nil)
+            navigationController?.pushViewController(detailBookReviewViewController, animated: true)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
