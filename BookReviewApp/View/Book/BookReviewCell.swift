@@ -17,7 +17,7 @@ class BookReviewCell: UITableViewCell {
         setUpStackView()
         //setLayout()
         //setBacView()
-
+        
     }
     
     required init?(coder: NSCoder) {
@@ -26,13 +26,52 @@ class BookReviewCell: UITableViewCell {
     
     override func layoutSubviews() {
         contentView.backgroundColor = .clear
-        backgroundColor = .gray
+        backgroundColor = .clear
+        self.selectionStyle = .none
     }
     
+    override var isSelected: Bool {
+        didSet {
+            self.onUpdateView()
+        }
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        self.onUpdateView()
+    }
+
+    private func onUpdateView() {
+        self.accessoryType = self.isSelected ? .checkmark : .none
+    }
+
+    override var isHighlighted: Bool {
+        didSet {
+            self.onUpdateHighlight(self.isHighlighted, animated: false)
+        }
+    }
+
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+        self.onUpdateHighlight(highlighted, animated: animated)
+    }
+
+    private func onUpdateHighlight(_ highlighted: Bool, animated: Bool) {
+        UIView.animate(withDuration: animated ? 0.1 : 0) {
+            self.shadowView.alpha = highlighted ? 0.3 : 0.0
+        }
+    }
     //背景
     let backView: UIView = { () -> UIView in
         let view = UIView()
-        view.backgroundColor = UIColor.systemGreen
+        //view.backgroundColor = .clear
+        view.layer.cornerRadius = 5
+        return view
+    }()
+    
+    let shadowView: UIView = { () -> UIView in
+        let view = UIView()
+        view.backgroundColor = .red
         view.layer.cornerRadius = 5
         return view
     }()
@@ -74,7 +113,11 @@ class BookReviewCell: UITableViewCell {
     
     func setBacView() {
         addSubview(backView)
+        backView.addSubview(shadowView)
         backView.snp.makeConstraints { make in
+            make.edges.equalTo(self).inset(UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2))
+        }
+        shadowView.snp.makeConstraints { make in
             make.edges.equalTo(self).inset(UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2))
         }
     }
@@ -90,7 +133,7 @@ class BookReviewCell: UITableViewCell {
     }()
     
     func setUpStackView() {
-
+        
         let stackView = UIStackView(arrangedSubviews: [titleLabel,
                                                        detailLabel,
                                                        reviewerLabel,
