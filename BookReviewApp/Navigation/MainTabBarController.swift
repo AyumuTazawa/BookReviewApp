@@ -17,12 +17,14 @@ final class MainTabBarController: UITabBarController {
     }
     
     func setupTab() {
-        let postBookReviewViewController = PostBookReviewViewController()
-        postBookReviewViewController.tabBarItem = UITabBarItem(title: "tab1", image: .none, tag: 0)
+        let postBookReview = PostBookReviewViewController()
+        postBookReview.tabBarItem = UITabBarItem(title: "tab1", image: .none, tag: 0)
         
-        let bookReviewListViewController = BookReviewListViewController()
-        bookReviewListViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
+        //let bookReviewListViewController = DetailBookNavigationController()
+        let vc = BookReviewListViewController()
+        let bookList = UINavigationController.init(rootViewController: vc)
+        bookList.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
         
-        viewControllers = [bookReviewListViewController, postBookReviewViewController]
+        viewControllers = [bookList, postBookReview]
     }
 }
