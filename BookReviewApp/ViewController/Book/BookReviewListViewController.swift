@@ -32,6 +32,7 @@ class BookReviewListViewController: UIViewController {
 //                                           height:screenHeight)
         bookReviewTableView.delegate = self
         bookReviewTableView.dataSource = self
+        bookReviewTableView.rowHeight = UITableView.automaticDimension
         //bookReviewTableView.backgroundColor = .gray
 
         // bookReviewTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -39,6 +40,7 @@ class BookReviewListViewController: UIViewController {
         //        self.bookReviewTableView.rowHeight = 300
         
         //self.bookReviewTableView.rowHeight = 300
+        bookReviewTableView.separatorStyle = .none
 
         
         view.addSubview(bookReviewTableView)
@@ -61,17 +63,19 @@ class BookReviewListViewController: UIViewController {
 
 extension BookReviewListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return bookDataList.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        //return CGFloat(315)
         tableView.estimatedRowHeight
+        
         return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BookReviewCell
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         
         if bookDataList.count == 0 {
             
@@ -88,6 +92,7 @@ extension BookReviewListViewController: UITableViewDelegate, UITableViewDataSour
             cell.reviewLabel.sizeToFit()
             //cell.setupCell(title: name)
         }
+        
         return cell
     }
     
