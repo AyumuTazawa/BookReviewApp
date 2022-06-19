@@ -9,7 +9,36 @@ import UIKit
 import SnapKit
 
 class TopView: UIView {
+    
+    let adjustmentLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .red
+        
+        return label
+    }()
+    
+    public var welcomeLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = NSTextAlignment.center
+        label.text = "Welcome"
+        
+        return label
+    }()
+    
+    public var titleBackView: UIView = {
+        let view =  UIView()
+        view.backgroundColor = .yellow
+        
+        return view
+    }()
 
+    public var buttonBackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .blue
+        
+        return view
+    }()
+    
     public var toLogInButton: UIButton! = {
         let button = UIButton()
         button.setTitle("ログイン", for: .normal)
@@ -27,7 +56,8 @@ class TopView: UIView {
         
         return button
     }()
-
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -41,23 +71,55 @@ class TopView: UIView {
         setup()
     }
     
+    
     func setup() {
-        self.addSubview(toLogInButton)
-        self.addSubview(toSignInButton)
+        self.addSubview(adjustmentLabel)
+        self.addSubview(titleBackView)
+        titleBackView.addSubview(welcomeLabel)
+        self.addSubview(buttonBackView)
+        buttonBackView.addSubview(toLogInButton)
+        buttonBackView.addSubview(toSignInButton)
         
-        toLogInButton.snp.makeConstraints { make in
-            make.width.equalTo(250)
-            make.height.equalTo(50)
+        adjustmentLabel.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalTo(10)
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-200)
+            make.centerY.equalToSuperview()
         }
         
-        toSignInButton.snp.makeConstraints { make in
+        titleBackView.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.35)
             make.centerX.equalToSuperview()
-            //make.centerY.equalToSuperview()
-            make.bottom.equalTo(toLogInButton.snp.top).offset(-10)
-            make.width.equalTo(250)
+            make.bottom.equalTo(adjustmentLabel.snp.top)
+        }
+        
+        welcomeLabel.snp.makeConstraints { make in
+            make.width.equalToSuperview().multipliedBy(0.9)
+            make.height.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+        
+        buttonBackView.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.4)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(adjustmentLabel.snp.bottom)
+        }
+        
+        toLogInButton.snp.makeConstraints { make in
+            make.width.equalToSuperview().multipliedBy(0.9)
             make.height.equalTo(50)
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+
+        toSignInButton.snp.makeConstraints { make in
+            make.width.equalToSuperview().multipliedBy(0.9)
+            make.height.equalTo(50)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(toLogInButton.snp.bottom).offset(10)
         }
     }
 }
