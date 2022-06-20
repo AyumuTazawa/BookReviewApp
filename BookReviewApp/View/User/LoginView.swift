@@ -10,6 +10,27 @@ import SnapKit
 
 class LoginView: UIView {
     
+    let adjustmentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemCyan
+        
+        return view
+    }()
+    
+    let labelBackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .green
+        
+        return view
+    }()
+    
+    let buttonBackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemPink
+        
+        return view
+    }()
+    
     public var logInButton: UIButton! = { () -> UIButton in
         let button = UIButton()
         button.setTitle("ログイン", for: .normal)
@@ -47,30 +68,56 @@ class LoginView: UIView {
     }
     
     func setup() {
-        self.addSubview(logInButton)
-        self.addSubview(emailTextField)
-        self.addSubview(passwordTextField)
-
-        logInButton.snp.makeConstraints { make in
+        self.addSubview(adjustmentView)
+        self.addSubview(labelBackView)
+        self.addSubview(buttonBackView)
+        
+        labelBackView.addSubview(emailTextField)
+        labelBackView.addSubview(passwordTextField)
+        
+        buttonBackView.addSubview(logInButton)
+        
+        adjustmentView.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalTo(10)
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
-            make.width.equalTo(200)
-            make.height.equalTo(50)
+        }
+        
+        labelBackView.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.35)
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(adjustmentView.snp.top)
+        }
+        
+        buttonBackView.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.4)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(adjustmentView.snp.bottom)
         }
         
         passwordTextField.snp.makeConstraints { make in
-            make.width.equalTo(200)
+            make.width.equalToSuperview().multipliedBy(0.9)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(logInButton.snp.top).offset(-50)
+            make.bottom.equalTo(labelBackView.snp.bottom).offset(-10)
         }
         
         emailTextField.snp.makeConstraints { make in
-            make.width.equalTo(200)
+            make.width.equalToSuperview().multipliedBy(0.9)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(passwordTextField.snp.top).offset(-50)
+            make.bottom.equalTo(passwordTextField.snp.top).offset(-10)
+        }
+        
+        logInButton.snp.makeConstraints { make in
+            make.width.equalToSuperview().multipliedBy(0.9)
+            make.height.equalTo(50)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(buttonBackView.snp.top).offset(0).offset(10)
         }
     }
-
+    
 }
