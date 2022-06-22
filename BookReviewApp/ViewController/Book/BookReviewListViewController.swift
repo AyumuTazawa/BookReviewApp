@@ -18,8 +18,15 @@ class BookReviewListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.isTranslucent = false
+        extendedLayoutIncludesOpaqueBars = false
+        //self.navigationController?.navigationBar.barTintColor = UIColor.orange
         view.backgroundColor = .white
         navigationItem.title = "Center"
+        
+        self.tabBarController?.tabBar.isTranslucent = false
+        
         setupUI()
         executeFetchBooks()
         
@@ -35,6 +42,7 @@ class BookReviewListViewController: UIViewController {
         
         //self.bookReviewTableView.rowHeight = 300
         bookReviewTableView.separatorStyle = .none
+        bookReviewTableView.backgroundColor = .systemMint
         view.addSubview(bookReviewTableView)
         
         bookReviewTableView.snp.makeConstraints { make in
