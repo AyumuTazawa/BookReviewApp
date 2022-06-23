@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class DetailBookReviewViewController: UIViewController {
 
@@ -26,16 +27,21 @@ class DetailBookReviewViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
+        self.navigationController?.navigationBar.isTranslucent = false
+        extendedLayoutIncludesOpaqueBars = false
+        self.tabBarController?.tabBar.isTranslucent = false
         setUpView()
         executeFetchBook(id: self.id)
         
     }
     
     func setUpView() {
-        let width = self.view.bounds.width
-        let height = self.view.bounds.height
-        bookReviewDetailView.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        bookReviewDetailView.backgroundColor = .systemGray5
         self.view.addSubview(bookReviewDetailView)
+        
+        bookReviewDetailView.snp.makeConstraints { make in
+            make.edges.equalTo(view).inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+        }
     }
     
     func setUpUIData(data: Book) {
