@@ -10,11 +10,11 @@ import SnapKit
 
 class TopView: UIView {
     
-    let adjustmentLabel: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .red
+    let adjustmentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .red
         
-        return label
+        return view
     }()
     
     public var welcomeLabel: UILabel = {
@@ -73,14 +73,14 @@ class TopView: UIView {
     
     
     func setup() {
-        self.addSubview(adjustmentLabel)
+        self.addSubview(adjustmentView)
         self.addSubview(titleBackView)
         titleBackView.addSubview(welcomeLabel)
         self.addSubview(buttonBackView)
         buttonBackView.addSubview(toLogInButton)
         buttonBackView.addSubview(toSignInButton)
         
-        adjustmentLabel.snp.makeConstraints { make in
+        adjustmentView.snp.makeConstraints { make in
             make.width.equalToSuperview()
             make.height.equalTo(10)
             make.centerX.equalToSuperview()
@@ -91,7 +91,7 @@ class TopView: UIView {
             make.width.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.35)
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(adjustmentLabel.snp.top)
+            make.bottom.equalTo(adjustmentView.snp.top)
         }
         
         welcomeLabel.snp.makeConstraints { make in
@@ -105,7 +105,7 @@ class TopView: UIView {
             make.width.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.4)
             make.centerX.equalToSuperview()
-            make.top.equalTo(adjustmentLabel.snp.bottom)
+            make.top.equalTo(adjustmentView.snp.bottom)
         }
         
         toLogInButton.snp.makeConstraints { make in
