@@ -9,6 +9,7 @@ import UIKit
 
 class TopViewController: UIViewController {
     var topView: TopView!
+    let loadingCircle: LoadingCircle = LoadingCircle()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,13 +41,13 @@ class TopViewController: UIViewController {
     @objc func didTapButton(_ sender: UIButton) {
 //        let vc = LoginViewController()
 //        navigationController?.pushViewController(vc, animated: true)
-        
+        self.loadingCircle.showIndicator()
         let vc = LoginViewController()
         let loginViewController = UINavigationController.init(rootViewController: vc)
         loginViewController.modalTransitionStyle = .coverVertical
         //signInViewController.modalPresentationStyle = .custom
+        self.loadingCircle.stopIndicator()
         self.present(loginViewController, animated: true, completion: nil)
-        
     }
     
     @objc func didTaptoSignInButton(_ sender: UIButton) {
