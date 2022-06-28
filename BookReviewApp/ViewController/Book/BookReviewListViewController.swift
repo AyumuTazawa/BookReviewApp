@@ -11,6 +11,7 @@ import SnapKit
 class BookReviewListViewController: UIViewController {
     var bookDataList: [Book] = []
     let bookApiClient: BookApiClient = BookApiClient()
+    let loadingCircle = LoadingCircle()
     //スクリーンの横幅、縦幅を定義
     let screenWidth = Int(UIScreen.main.bounds.size.width)
     let screenHeight = Int(UIScreen.main.bounds.size.height)
@@ -51,9 +52,11 @@ class BookReviewListViewController: UIViewController {
     }
     
     func executeFetchBooks() {
+        self.loadingCircle.showIndicator()
         self.bookApiClient.fetchBooks(offset: "20") { completion in
             print(completion)
             self.bookDataList = completion!
+            self.loadingCircle.stopIndicator()
             self.bookReviewTableView.reloadData()
         }
     }
