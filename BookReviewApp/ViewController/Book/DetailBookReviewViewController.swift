@@ -13,6 +13,7 @@ class DetailBookReviewViewController: UIViewController {
     let id: String
     var bookReviewDetailView = DetailBookReviewView()
     var bookApiClient: BookApiClient = BookApiClient()
+    let loadingCircle = LoadingCircle()
     
     init(id: String) {
         self.id = id
@@ -53,8 +54,10 @@ class DetailBookReviewViewController: UIViewController {
     }
     
     func executeFetchBook(id: String) {
+        self.loadingCircle.showIndicator()
         self.bookApiClient.fetchDetailBookReview(id: id) { [self] completion in
             let fetchData = completion!
+            self.loadingCircle.stopIndicator()
             setUpUIData(data: fetchData)
         }
     }
