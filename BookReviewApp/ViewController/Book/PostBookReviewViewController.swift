@@ -10,6 +10,7 @@ import UIKit
 class PostBookReviewViewController: UIViewController {
     var postBookReview = PostBookReviewView()
     var bookApiClient = BookApiClient()
+    let loadingCircle = LoadingCircle()
     var errMessage: [String] = []
     var registerBookArray: Dictionary<String, String> = [:]
 
@@ -46,8 +47,10 @@ class PostBookReviewViewController: UIViewController {
             "review": review
         ]
         let checkValidationResult: Bool = executeValidationChek(data: registerBookArray)
+        self.loadingCircle.showIndicator()
         if(checkValidationResult) {
             self.bookApiClient.postBookReview(postBookData: self.registerBookArray)
+            self.loadingCircle.stopIndicator()
         }
         
     }
