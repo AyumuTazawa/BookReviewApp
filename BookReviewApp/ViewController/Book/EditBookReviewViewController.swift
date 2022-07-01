@@ -12,6 +12,7 @@ class EditBookReviewViewController: UIViewController {
     let id: String
     var editBookReviewView = EditBookReviewView()
     var bookApiClient: BookApiClient = BookApiClient()
+    let loadingCircle = LoadingCircle()
     var errMessage: [String] = []
     var updateBookArray: Dictionary<String, String> = [:]
     
@@ -69,8 +70,10 @@ class EditBookReviewViewController: UIViewController {
     }
     
     func executeFetchBook(id: String) {
+        self.loadingCircle.showIndicator()
         self.bookApiClient.fetchDetailBookReview(id: id) { [self] completion in
             let fetchData = completion!
+            self.loadingCircle.stopIndicator()
             setUpUIData(data: fetchData)
         }
     }
