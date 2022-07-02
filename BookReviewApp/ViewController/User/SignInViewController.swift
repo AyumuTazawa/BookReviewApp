@@ -52,11 +52,15 @@ class SignInViewController: UIViewController {
         
         let checkValidationResult: String = executeValidationChek(data: signIn.makePostData())
         if(checkValidationResult == "バリデーションチェック成功") {
-            userApiClient.postSignInData(signindata: signIn) { completion in
-                print(completion)
-                let token = completion?.token
-                self.saveUserToken.saveToken(token: token!)
-            }
+            self.executePostSignInData(signindata: signIn)
+        }
+    }
+    
+    func executePostSignInData(signindata: SignIn) {
+        userApiClient.postSignInData(signindata: signindata) { completion in
+            print(completion)
+            let token = completion?.token
+            self.saveUserToken.saveToken(token: token!)
         }
     }
     
