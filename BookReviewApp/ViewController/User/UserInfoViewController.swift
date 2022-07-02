@@ -44,10 +44,12 @@ class UserInfoViewController: UIViewController {
     
     @objc func didTapUserInfoButton() {
         let name = UserName(name: self.userInfoView.nameTextField.text!)
-        
+        self.executeEditUserInfo(name: name)
+    }
+    
+    func executeEditUserInfo(name: UserName) {
         self.userApiClient.editUserInfo(userData: name) { completion in
             self.userInfoView.nameTextField.text =  completion?.name
         }
     }
-    
 }
