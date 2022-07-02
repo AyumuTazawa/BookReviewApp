@@ -47,15 +47,20 @@ class LoginViewController: UIViewController {
         self.loadingCircle.showIndicator()
         let checkValidationResult: Bool = executeValidationChek(data: login.postData())
         if(checkValidationResult){
-            self.userApiClient.logIn(logIndata: login) { completion in
-                let token = completion?.token
-                self.saveUserToken.saveToken(token: token!)
-                self.loadingCircle.stopIndicator()
-                let vc = MainTabBarController()
-                vc.modalTransitionStyle = .crossDissolve
-                vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true, completion: nil)
-            }
+            self.executeLogin(logIndata: login)
+            
+        }
+    }
+    
+    func executeLogin(logIndata: Login) {
+        self.userApiClient.logIn(logIndata: logIndata) { completion in
+            let token = completion?.token
+            self.saveUserToken.saveToken(token: token!)
+            self.loadingCircle.stopIndicator()
+            let vc = MainTabBarController()
+            vc.modalTransitionStyle = .crossDissolve
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
         }
     }
     
