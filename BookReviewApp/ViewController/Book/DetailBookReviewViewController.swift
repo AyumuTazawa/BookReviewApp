@@ -11,9 +11,9 @@ import SnapKit
 class DetailBookReviewViewController: UIViewController {
 
     let id: String
-    var bookReviewDetailView = DetailBookReviewView()
+    var bookReviewDetailView: DetailBookReviewView = DetailBookReviewView()
     var bookApiClient: BookApiClient = BookApiClient()
-    let loadingCircle = LoadingCircle()
+    let loadingCircle: LoadingCircle = LoadingCircle()
     
     init(id: String) {
         self.id = id

@@ -10,9 +10,9 @@ import UIKit
 class EditBookReviewViewController: UIViewController {
     
     let id: String
-    var editBookReviewView = EditBookReviewView()
+    var editBookReviewView: EditBookReviewView = EditBookReviewView()
     var bookApiClient: BookApiClient = BookApiClient()
-    let loadingCircle = LoadingCircle()
+    let loadingCircle: LoadingCircle = LoadingCircle()
     var errMessage: [String] = []
     var updateBookArray: Dictionary<String, String> = [:]
     
