@@ -8,9 +8,9 @@
 import UIKit
 
 class PostBookReviewViewController: UIViewController {
-    var postBookReview = PostBookReviewView()
-    var bookApiClient = BookApiClient()
-    let loadingCircle = LoadingCircle()
+    var postBookReview: PostBookReviewView = PostBookReviewView()
+    var bookApiClient: BookApiClient = BookApiClient()
+    let loadingCircle: LoadingCircle = LoadingCircle()
     var errMessage: [String] = []
     var registerBookArray: Dictionary<String, String> = [:]
 
