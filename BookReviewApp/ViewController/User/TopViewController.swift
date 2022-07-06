@@ -30,35 +30,35 @@ class TopViewController: UIViewController {
     
     func setUpButton() {
         topView.toLogInButton.addTarget(self,
-                                        action: #selector(didTapButton),
+                                        action: #selector(didTapToLoginButton),
                                         for: .touchDown)
         topView.toSignInButton.addTarget(self,
-                                         action: #selector(didTaptoSignInButton),
+                                         action: #selector(didTapToSignInButton),
                                          for: .touchDown)
     }
     
     
-    @objc func didTapButton(_ sender: UIButton) {
-//        let vc = LoginViewController()
-//        navigationController?.pushViewController(vc, animated: true)
-        self.loadingCircle.showIndicator()
+    @objc func didTapToLoginButton(_ sender: UIButton) {
+
+        self.toLoginViewController()
+    }
+    
+    @objc func didTapToSignInButton(_ sender: UIButton) {
+
+        self.toSignInViewController()
+    }
+    
+    func toLoginViewController() {
         let vc = LoginViewController()
         let loginViewController = UINavigationController.init(rootViewController: vc)
         loginViewController.modalTransitionStyle = .coverVertical
-        //signInViewController.modalPresentationStyle = .custom
-        self.loadingCircle.stopIndicator()
         self.present(loginViewController, animated: true, completion: nil)
     }
     
-    @objc func didTaptoSignInButton(_ sender: UIButton) {
-//        let signInViewController = SignInViewController()
-//        navigationController?.pushViewController(signInViewController, animated: true)
-        
-        
+    func toSignInViewController() {
         let vc = SignInViewController()
         let signInViewController = UINavigationController.init(rootViewController: vc)
         signInViewController.modalTransitionStyle = .coverVertical
-        //signInViewController.modalPresentationStyle = .custom
         self.present(signInViewController, animated: true, completion: nil)
     }
 
