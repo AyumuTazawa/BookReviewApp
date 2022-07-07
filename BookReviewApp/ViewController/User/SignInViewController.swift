@@ -50,8 +50,8 @@ class SignInViewController: UIViewController {
         let password = Password(password: signInView.passwordTextField.text!)
         let signIn = SignIn(name: name, email: email, password: password)
         
-        let checkValidationResult: String = executeValidationChek(data: signIn.makePostData())
-        if(checkValidationResult == "バリデーションチェック成功") {
+        let checkValidationResult: Bool = executeValidationChek(data: signIn.makePostData())
+        if(checkValidationResult) {
             self.executePostSignInData(signindata: signIn)
         }
     }
@@ -64,7 +64,7 @@ class SignInViewController: UIViewController {
         }
     }
     
-    func executeValidationChek(data: Dictionary<String, String>) -> String {
+    func executeValidationChek(data: Dictionary<String, String>) -> Bool {
         self.errMessage.removeAll()
         let checkNameResult = Validator.shared.checkName(name: data["name"], min: 1, max: 50)
         if(checkNameResult.isValid == false){ errMessage.append(checkNameResult.isError) }
@@ -79,10 +79,10 @@ class SignInViewController: UIViewController {
             //signInModel.postSignInData(signindata: signindata)
             //dialog.showDialog(vc: self, massegae: "テスト")
             //self.signInModel.postSignInData(signindata: data)
-            return "バリデーションチェック成功"
+            return true
         }else{
             print(errMessage)
-            return "バリデーションチェック成功"
+            return false
         }
     }
     
