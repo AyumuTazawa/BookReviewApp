@@ -22,7 +22,6 @@ class BookReviewListViewController: UIViewController {
         
         self.navigationController?.navigationBar.isTranslucent = false
         extendedLayoutIncludesOpaqueBars = false
-        //self.navigationController?.navigationBar.barTintColor = UIColor.orange
         view.backgroundColor = .white
         navigationItem.title = "Center"
         
@@ -37,11 +36,7 @@ class BookReviewListViewController: UIViewController {
         bookReviewTableView.delegate = self
         bookReviewTableView.dataSource = self
         bookReviewTableView.rowHeight = UITableView.automaticDimension
-        // bookReviewTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         bookReviewTableView.register(BookReviewCell.self, forCellReuseIdentifier: "cell")
-        //        self.bookReviewTableView.rowHeight = 300
-        
-        //self.bookReviewTableView.rowHeight = 300
         bookReviewTableView.separatorStyle = .none
         bookReviewTableView.backgroundColor = .systemMint
         view.addSubview(bookReviewTableView)
@@ -65,6 +60,7 @@ class BookReviewListViewController: UIViewController {
 
 
 extension BookReviewListViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return bookDataList.count
