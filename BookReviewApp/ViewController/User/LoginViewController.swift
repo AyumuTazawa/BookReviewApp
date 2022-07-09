@@ -57,11 +57,15 @@ class LoginViewController: UIViewController {
             let token = completion?.token
             self.saveUserToken.saveToken(token: token!)
             self.loadingCircle.stopIndicator()
-            let vc = MainTabBarController()
-            vc.modalTransitionStyle = .crossDissolve
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true, completion: nil)
+            self.toMainTabBar()
         }
+    }
+    
+    func toMainTabBar() {
+        let vc = MainTabBarController()
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
     
     func executeValidationChek(data: Dictionary<String, String>) -> Bool {
