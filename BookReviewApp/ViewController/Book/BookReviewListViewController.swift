@@ -99,17 +99,22 @@ extension BookReviewListViewController: UITableViewDelegate, UITableViewDataSour
         print("selected")
         let selectedBookReview = self.bookDataList[indexPath.row]
         if selectedBookReview.isMine == true {
-            let id: String = selectedBookReview.id!
-            let editBookReviewViewController = EditBookReviewViewController(id: id)
-            self.present(editBookReviewViewController, animated: true, completion: nil)
+            self.toEditBookReview(id: selectedBookReview.id!)
         } else {
-            let id: String = selectedBookReview.id!
-            let detailBookReviewViewController = DetailBookReviewViewController(id: id)
-            navigationController?.pushViewController(detailBookReviewViewController, animated: true)
+            self.toDetailBookReview(id: selectedBookReview.id!)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
-        
+    }
+    
+    func toEditBookReview(id: String) {
+        let editBookReviewViewController = EditBookReviewViewController(id: id)
+        self.present(editBookReviewViewController, animated: true, completion: nil)
+    }
+    
+    func toDetailBookReview(id: String) {
+        let detailBookReviewViewController = DetailBookReviewViewController(id: id)
+        navigationController?.pushViewController(detailBookReviewViewController, animated: true)
     }
     
 }
