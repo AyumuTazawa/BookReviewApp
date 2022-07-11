@@ -37,9 +37,15 @@ class UserInfoViewController: UIViewController {
     }
     
     func setUpUserInfoData() {
+            self.userInfoView.nameTextField.text =  executeFetchUserInfo()
+    }
+    
+    func executeFetchUserInfo() -> String {
+        var name: String!
         self.userApiClient.fetchUserInfo { completion in
-            self.userInfoView.nameTextField.text =  completion?.name
+            name = completion?.name
         }
+        return  name
     }
     
     @objc func didTapUserInfoButton() {
