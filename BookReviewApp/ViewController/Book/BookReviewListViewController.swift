@@ -12,9 +12,6 @@ class BookReviewListViewController: UIViewController {
     var bookDataList: [Book] = []
     let bookApiClient: BookApiClient = BookApiClient()
     let loadingCircle: LoadingCircle = LoadingCircle()
-    //スクリーンの横幅、縦幅を定義
-    let screenWidth = Int(UIScreen.main.bounds.size.width)
-    let screenHeight = Int(UIScreen.main.bounds.size.height)
     let bookReviewTableView = UITableView()
     
     override func viewDidLoad() {
