@@ -13,7 +13,7 @@ protocol BookApiClientProtocol {
     func fetchBooks(offset: String, completion: @escaping ([Book]?) -> Void)
     func postBookReview(postBookData: Dictionary<String,String>)
     func fetchDetailBookReview(id: String, completion: @escaping (Book?) -> Void)
-    func editBookReview(id: String, putBookData: Dictionary<String,String>, completion: @escaping (Book) -> Void)
+    func editBookReview(id: String, putBookData: BookModel, completion: @escaping (Book) -> Void)
     func deleteBookReview(id: String)
 }
 
@@ -76,9 +76,9 @@ class BookApiClient: BookApiClientProtocol {
     }
     
     
-    func editBookReview(id: String, putBookData: Dictionary<String, String>, completion: @escaping (Book) -> Void) {
+    func editBookReview(id: String, putBookData: BookModel, completion: @escaping (Book) -> Void) {
         let url = "https://api-for-missions-and-railways.herokuapp.com/books/\(id)"
-        AF.request(url, method: .put, parameters: putBookData, encoding: JSONEncoding.default, headers: headers).responseData { response in
+        AF.request(url, method: .put, parameters: putBookData.toArray(), encoding: JSONEncoding.default, headers: headers).responseData { response in
             switch response.result {
             case .success(let data):
                 do{
