@@ -9,13 +9,27 @@ import UIKit
 
 class DetailBookReviewView: UIView {
     
-    //項目名:本のタイトル
-    var bookTitleItemLabel: UILabel = { () -> UILabel in
-        let label: UILabel = UILabel()
-        label.text = "タイトル："
-        label.backgroundColor = .darkGray
-        return label
+    let topView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .red
+
+        return view
     }()
+    
+    let centerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemPurple
+
+        return view
+    }()
+    
+    let bottomView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .red
+        
+        return view
+    }()
+
     //本のタイトル
     let bookTitleLabel: UILabel = { () -> UILabel in
         let label = UILabel()
@@ -38,15 +52,7 @@ class DetailBookReviewView: UIView {
         //label.text = "URL"
         return label
     }()
-    
-    //項目名:紹介文
-    var bookDetailItemLabel: UILabel = { () -> UILabel in
-        let label: UILabel = UILabel()
-        label.text = "紹介文："
-        label.backgroundColor = .green
-        return label
-    }()
-    
+
     //紹介文
     let bookDetailLabel: UILabel = { () -> UILabel in
         let label = UILabel()
@@ -85,11 +91,11 @@ class DetailBookReviewView: UIView {
         return label
     }()
     
-    let spaceAdjustmentLabel: UILabel = { () -> UILabel in
-        let label = UILabel()
-        label.backgroundColor = .red
-        return label
-    }()
+//    let spaceAdjustmentLabel: UILabel = { () -> UILabel in
+//        let label = UILabel()
+//        label.backgroundColor = .red
+//        return label
+//    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -105,95 +111,88 @@ class DetailBookReviewView: UIView {
     }
     
     func setup() {
-        self.addSubview(spaceAdjustmentLabel)
-        self.addSubview(bookTitleItemLabel)
-        self.addSubview(bookTitleLabel)
-        self.addSubview(bookURLItemLabel)
-        self.addSubview(bookURLLabel)
-        self.addSubview(bookDetailItemLabel)
-        self.addSubview(bookDetailLabel)
-        self.addSubview(bookReviewerItemLabel)
-        self.addSubview(bookReviewerLabel)
-        self.addSubview(bookReviewItemLabel)
-        self.addSubview(bookReviewLabel)
+        self.addSubview(centerView)
+        self.addSubview(topView)
+        topView.addSubview(bookTitleLabel)
+        //self.addSubview(bookURLItemLabel)
+        //self.addSubview(bookURLLabel)
+        topView.addSubview(bookDetailLabel)
+        //self.addSubview(bookReviewerItemLabel)
+        //self.addSubview(bookReviewerLabel)
+        //self.addSubview(bookReviewItemLabel)
+        //self.addSubview(bookReviewLabel)
 
         
-        spaceAdjustmentLabel.snp.makeConstraints { make in
+        centerView.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(0)
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
         }
-        
-        bookDetailItemLabel.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(50)
+
+        topView.snp.makeConstraints { make in
+            make.width.equalToSuperview().multipliedBy(0.95)
+            make.height.equalToSuperview().multipliedBy(0.48)
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(spaceAdjustmentLabel.snp.top)
+            make.bottom.equalTo(centerView.snp.top).offset(-10)
         }
+
+//        bookURLLabel.snp.makeConstraints { make in
+//            make.width.equalToSuperview().multipliedBy(0.8)
+//            make.height.equalTo(50)
+//            make.centerX.equalToSuperview()
+//            make.bottom.equalTo(bookDetailItemLabel.snp.top).offset(-10)
+//        }
         
-        bookURLLabel.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(50)
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(bookDetailItemLabel.snp.top).offset(-10)
-        }
-        
-        bookURLItemLabel.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(50)
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(bookURLLabel.snp.top).offset(-10)
-        }
+//        bookURLItemLabel.snp.makeConstraints { make in
+//            make.width.equalToSuperview().multipliedBy(0.8)
+//            make.height.equalTo(50)
+//            make.centerX.equalToSuperview()
+//            make.bottom.equalTo(bookURLLabel.snp.top).offset(-10)
+//        }
         
         bookTitleLabel.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(50)
+            make.width.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.2)
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(bookURLItemLabel.snp.top).offset(-10)
+            make.centerY.equalToSuperview()
+            make.top.equalTo(topView.snp.top).offset(5)
         }
-        
-        bookTitleItemLabel.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(50)
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(bookTitleLabel.snp.top).offset(-10)
-        }
-        
+
         bookDetailLabel.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(50)
+            make.width.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.8)
             make.centerX.equalToSuperview()
-            make.top.equalTo(spaceAdjustmentLabel.snp.bottom)
+            make.top.equalTo(bookTitleLabel.snp.bottom)
         }
         
-        bookReviewerItemLabel.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(50)
-            make.centerX.equalToSuperview()
-            make.top.equalTo(bookDetailLabel.snp.bottom).offset(10)
-        }
+//        bookReviewerItemLabel.snp.makeConstraints { make in
+//            make.width.equalToSuperview().multipliedBy(0.8)
+//            make.height.equalTo(50)
+//            make.centerX.equalToSuperview()
+//            make.top.equalTo(bookDetailLabel.snp.bottom).offset(10)
+//        }
         
-        bookReviewerLabel.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(50)
-            make.centerX.equalToSuperview()
-            make.top.equalTo(bookReviewerItemLabel.snp.bottom).offset(10)
-        }
+//        bookReviewerLabel.snp.makeConstraints { make in
+//            make.width.equalToSuperview().multipliedBy(0.8)
+//            make.height.equalTo(50)
+//            make.centerX.equalToSuperview()
+//            make.top.equalTo(bookReviewerItemLabel.snp.bottom).offset(10)
+//        }
         
-        bookReviewItemLabel.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(50)
-            make.centerX.equalToSuperview()
-            make.top.equalTo(bookReviewerLabel.snp.bottom).offset(10)
-        }
+//        bookReviewItemLabel.snp.makeConstraints { make in
+//            make.width.equalToSuperview().multipliedBy(0.8)
+//            make.height.equalTo(50)
+//            make.centerX.equalToSuperview()
+//            make.top.equalTo(bookReviewerLabel.snp.bottom).offset(10)
+//        }
         
-        bookReviewLabel.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(50)
-            make.centerX.equalToSuperview()
-            make.top.equalTo(bookReviewItemLabel.snp.bottom).offset(10)
-        }
+//        bookReviewLabel.snp.makeConstraints { make in
+//            make.width.equalToSuperview().multipliedBy(0.8)
+//            make.height.equalTo(50)
+//            make.centerX.equalToSuperview()
+//            make.top.equalTo(bookReviewItemLabel.snp.bottom).offset(10)
+//        }
     }
     
 }
