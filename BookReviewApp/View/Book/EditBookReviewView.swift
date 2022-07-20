@@ -8,7 +8,7 @@
 import UIKit
 
 class EditBookReviewView: UIView {
-    
+
     //項目名:本のタイトル
     var bookTitleItemLabel: UILabel = { () -> UILabel in
         let label: UILabel = UILabel()
@@ -16,6 +16,7 @@ class EditBookReviewView: UIView {
         label.text = "タイトル："
         return label
     }()
+
     //本のタイトル
     let bookTitleTextField: UITextField = { () -> UITextField in
         let textField = UITextField()
@@ -24,7 +25,7 @@ class EditBookReviewView: UIView {
         //textField.backgroundColor = .red
         return textField
     }()
-    
+
     //項目名:URL
     var bookURLItemLabel: UILabel = { () -> UILabel in
         let label: UILabel = UILabel()
@@ -32,7 +33,7 @@ class EditBookReviewView: UIView {
         //label.backgroundColor = .systemPink
         return label
     }()
-    
+
     //URL
     let bookURLTextField: UITextField = { () -> UITextField in
         let textField = UITextField()
@@ -41,7 +42,7 @@ class EditBookReviewView: UIView {
         //textField.backgroundColor = .blue
         return textField
     }()
-    
+
     //項目名:紹介文
     var bookDetailItemLabel: UILabel = { () -> UILabel in
         let label: UILabel = UILabel()
@@ -49,7 +50,7 @@ class EditBookReviewView: UIView {
         //label.backgroundColor = .brown
         return label
     }()
-    
+
     //紹介文
     let bookDetailTextView: UITextView = { () -> UITextView in
         let teextView = UITextView()
@@ -58,7 +59,7 @@ class EditBookReviewView: UIView {
 //        teextView.borderStyle = .roundedRect
         return teextView
     }()
-    
+
     //項目名:レビュー
     var bookReviewItemLabel: UILabel = { () -> UILabel in
         let label: UILabel = UILabel()
@@ -66,14 +67,14 @@ class EditBookReviewView: UIView {
         //label.backgroundColor = .darkGray
         return label
     }()
-    
+
     //レビュー
     let bookReviewTextView: UITextView = { () -> UITextView in
         let textView = UITextView()
         textView.backgroundColor = .gray
         return textView
     }()
-    
+
     //削除ボタン
     var bookDeleteButton: UIButton! = { () -> UIButton in
         let button = UIButton()
@@ -83,7 +84,7 @@ class EditBookReviewView: UIView {
         //button.backgroundColor = .green
         return button
     }()
-    
+
     //更新ボタン
     var bookUpdateButton: UIButton! = { () -> UIButton in
         let button = UIButton()
@@ -98,20 +99,20 @@ class EditBookReviewView: UIView {
         //label.backgroundColor = .red
         return label
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setup()
     }
-    
+
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         setup()
     }
-    
+
     func setup() {
         self.addSubview(bookDetailTextView)
         self.addSubview(bookTitleItemLabel)
@@ -124,36 +125,36 @@ class EditBookReviewView: UIView {
         self.addSubview(spaceAdjustmentLabel)
         self.addSubview(bookDeleteButton)
         self.addSubview(bookUpdateButton)
-        
-        
+
+
         bookURLTextField.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
             make.bottom.equalTo(bookDetailItemLabel.snp.top).offset(-10)
         }
-        
+
         bookURLItemLabel.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(20)
             make.centerX.equalToSuperview()
             make.bottom.equalTo(bookURLTextField.snp.top).offset(-5)
         }
-        
+
         bookTitleTextField.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
             make.bottom.equalTo(bookURLItemLabel.snp.top).offset(-10)
         }
-        
+
         bookTitleItemLabel.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(20)
             make.centerX.equalToSuperview()
             make.bottom.equalTo(bookTitleTextField.snp.top).offset(-5)
         }
-        
+
         bookDetailItemLabel.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(20)
@@ -161,7 +162,7 @@ class EditBookReviewView: UIView {
             make.bottom.equalTo(bookDetailTextView.snp.top).offset(-5)
             //make.centerY.equalToSuperview()
         }
-        
+
         bookDetailTextView.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(100)
@@ -169,28 +170,28 @@ class EditBookReviewView: UIView {
             make.centerY.equalToSuperview()
             //make.top.equalTo(bookDetailItemLabel.snp.bottom).offset(5)
         }
-        
+
         bookReviewItemLabel.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(20)
             make.centerX.equalToSuperview()
             make.top.equalTo(bookDetailTextView.snp.bottom).offset(10)
         }
-        
+
         bookReviewTextView.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(100)
             make.centerX.equalToSuperview()
             make.top.equalTo(bookReviewItemLabel.snp.bottom).offset(5)
         }
-        
+
         spaceAdjustmentLabel.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.02)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
             make.top.equalTo(bookReviewTextView.snp.bottom).offset(40)
         }
-        
+
         bookUpdateButton.snp.makeConstraints { make in
             //make.size.equalTo(100)
             make.width.equalToSuperview().multipliedBy(0.39)
@@ -198,7 +199,7 @@ class EditBookReviewView: UIView {
             make.top.equalTo(spaceAdjustmentLabel)
             make.left.equalTo(spaceAdjustmentLabel.snp.right).offset(0)
         }
-        
+
         bookDeleteButton.snp.makeConstraints { make in
             //make.size.equalTo(100)
             make.width.equalToSuperview().multipliedBy(0.39)
@@ -207,5 +208,5 @@ class EditBookReviewView: UIView {
             make.right.equalTo(spaceAdjustmentLabel.snp.left).offset(0)
         }
     }
-    
+
 }
