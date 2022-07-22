@@ -72,21 +72,21 @@ class PostBookReviewView: UIView {
         self.addSubview(bookRegisterButton)
 
         bookURLTextField.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.8)
+            make.width.equalToSuperview().multipliedBy(0.95)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
             make.bottom.equalTo(bookDetailTextField.snp.top).offset(-20)
         }
 
         bookTitleTextField.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.8)
+            make.width.equalToSuperview().multipliedBy(0.95)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
             make.bottom.equalTo(bookURLTextField.snp.top).offset(-20)
         }
 
         bookDetailTextField.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.8)
+            make.width.equalToSuperview().multipliedBy(0.95)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
@@ -94,14 +94,14 @@ class PostBookReviewView: UIView {
         }
 
         bookReviewTextField.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.8)
+            make.width.equalToSuperview().multipliedBy(0.95)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
             make.top.equalTo(bookDetailTextField.snp.bottom).offset(20)
         }
 
         bookRegisterButton.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.6)
+            make.width.equalToSuperview().multipliedBy(0.95)
             make.height.equalTo(50)
             make.centerX.equalToSuperview()
             make.top.equalTo(bookReviewTextField.snp.bottom).offset(80)
