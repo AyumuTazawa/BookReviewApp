@@ -9,6 +9,13 @@ import UIKit
 
 class PostBookReviewView: UIView {
 
+    private lazy var scrollView: UIScrollView = {
+      let scrollView = UIScrollView()
+      scrollView.backgroundColor = .red
+      scrollView.translatesAutoresizingMaskIntoConstraints = false
+      return scrollView
+    }()
+
     //本のタイトル
     let bookTitleTextField: UITextField = { () -> UITextField in
         let textField = UITextField()
@@ -65,11 +72,16 @@ class PostBookReviewView: UIView {
     }
 
     func setup() {
-        self.addSubview(bookTitleTextField)
-        self.addSubview(bookURLTextField)
-        self.addSubview(bookDetailTextField)
-        self.addSubview(bookReviewTextField)
-        self.addSubview(bookRegisterButton)
+        self.addSubview(scrollView)
+        scrollView.addSubview(bookTitleTextField)
+        scrollView.addSubview(bookURLTextField)
+        scrollView.addSubview(bookDetailTextField)
+        scrollView.addSubview(bookReviewTextField)
+        scrollView.addSubview(bookRegisterButton)
+        
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalTo(self).inset(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+        }
 
         bookURLTextField.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.95)
