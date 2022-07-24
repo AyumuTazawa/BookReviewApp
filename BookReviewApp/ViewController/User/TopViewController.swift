@@ -23,8 +23,10 @@ class TopViewController: UIViewController {
     
     
     func setUpView() {
+        let width = self.view.bounds.width
+        let height = self.view.bounds.height
         self.topView = TopView()
-        self.topView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
+        self.topView.frame = CGRect(x: 0, y: 0, width: width, height: height)
         self.view.addSubview(topView)
     }
     
