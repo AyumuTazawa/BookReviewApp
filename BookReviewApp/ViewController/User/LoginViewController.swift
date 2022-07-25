@@ -11,7 +11,6 @@ class LoginViewController: UIViewController {
     var loginView: LoginView! = LoginView()
     var userApiClient: UserApiClient = UserApiClient()
     var saveUserToken: SaveUserToken = SaveUserToken()
-    let loadingCircle: LoadingCircle = LoadingCircle()
     var errMessage: [String] = []
     
     override func viewDidLoad() {
@@ -43,8 +42,8 @@ class LoginViewController: UIViewController {
         let email: Email = Email(email: loginView.emailTextField.text!)
         let password: Password = Password(password: loginView.passwordTextField.text!)
         let login: Login = Login(email: email, password: password)
-        
-        self.loadingCircle.showIndicator()
+
+
         let checkValidationResult: Bool = executeValidationChek(data: login.postData())
         if(checkValidationResult){
             self.executeLogin(logIndata: login)
@@ -56,7 +55,6 @@ class LoginViewController: UIViewController {
         self.userApiClient.logIn(logIndata: logIndata) { completion in
             let token = completion?.token
             self.saveUserToken.saveToken(token: token!)
-            self.loadingCircle.stopIndicator()
             self.toMainTabBar()
         }
     }
