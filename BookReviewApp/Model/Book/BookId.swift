@@ -9,13 +9,13 @@ import Foundation
 
 class BookId {
     
-    let id: String
+    let value: String
     
     init (email: String) {
-        self.id = email
+        self.value = email
     }
     
     func toString() -> String {
-        return self.id
+        return self.value
     }
 }
