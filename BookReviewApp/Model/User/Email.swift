@@ -9,13 +9,13 @@ import Foundation
 
 class Email {
     
-    let email: String
+    let value: String
     
     init (email: String) {
-        self.email = email
+        self.value = email
     }
     
     func toString() -> String {
-        return self.email
+        return self.value
     }
 }
