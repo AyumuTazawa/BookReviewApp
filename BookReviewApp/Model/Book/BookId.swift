@@ -8,14 +8,15 @@
 import Foundation
 
 class BookId {
-    
+
     let value: String
-    
+
     init (email: String) {
         self.value = email
     }
-    
+
     func toString() -> String {
         return self.value
     }
+
 }

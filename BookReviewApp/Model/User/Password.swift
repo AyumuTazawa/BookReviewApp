@@ -9,14 +9,14 @@ import Foundation
 
 class Password {
     
-    let password: String
+    let value: String
     
     init(password: String) {
-        self.password = password
+        self.value = password
     }
     
     func toString() -> String {
-        return self.password
+        return self.value
     }
     
 }
