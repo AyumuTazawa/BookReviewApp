@@ -9,19 +9,19 @@ import Foundation
 
 class UserName {
     
-    let name: String
+    let value: String
     
     init(name: String) {
-        self.name = name
+        self.value = name
     }
     
     func toString() -> String {
-        return self.name
+        return self.value
     }
     
     func makePostData() -> Dictionary<String,String> {
         var editUserInfodata: Dictionary<String,String> = [:]
-        editUserInfodata["name"] = self.name
+        editUserInfodata["name"] = self.value
         
         return editUserInfodata
     }
