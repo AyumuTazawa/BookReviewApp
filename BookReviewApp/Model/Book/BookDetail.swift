@@ -8,13 +8,13 @@
 import Foundation
 
 class BookDetail {
-    
+
     let value: String
     
     init (value: String) {
         self.value = value
     }
-    
+
     func toString() -> String {
         return self.value
     }
