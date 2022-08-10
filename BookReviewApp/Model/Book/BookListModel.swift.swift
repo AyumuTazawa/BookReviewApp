@@ -9,8 +9,9 @@ import Foundation
 
 class BookListModel {
     var bookList:[BookModel] = []
-    
+
     init(book: BookModel) {
         self.bookList.append(book)
     }
+
 }
