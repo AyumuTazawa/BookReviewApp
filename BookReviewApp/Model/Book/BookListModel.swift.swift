@@ -14,4 +14,8 @@ class BookListModel {
         self.bookList.append(book)
     }
 
+    func toArray() -> Array<BookModel> {
+        return self.bookList
+    }
+
 }
