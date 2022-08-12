@@ -19,11 +19,11 @@ class UserApiClient {
     
     let userToken: UserToken = UserToken()
     let headers: HTTPHeaders
-    
+
     init() {
         self.headers = self.userToken.getHeaders()
     }
-    
+
     func postSignInData(signindata: SignIn, completion: @escaping (Token?) -> Void) {
         print(signindata)
         var token: Token!
@@ -44,8 +44,8 @@ class UserApiClient {
             }
         }
     }
-    
-    
+
+
     func logIn(logIndata: Login, completion: @escaping (Token?) -> Void) {
         var token: Token!
         let url = "https://api-for-missions-and-railways.herokuapp.com/signin"
@@ -66,8 +66,8 @@ class UserApiClient {
             }
         }
     }
-    
-    
+
+
     func fetchUserInfo(completion: @escaping (UserNameStruct?) -> Void) {
         var userName: UserNameStruct!
         let headers = self.userToken.getHeaders()
@@ -82,8 +82,8 @@ class UserApiClient {
             }
         }
     }
-    
-    
+
+
     func editUserInfo(userData: UserName, completion: @escaping (UserNameStruct?) -> Void) {
         print(userData)
         var name: UserNameStruct!
