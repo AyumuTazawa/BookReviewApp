@@ -38,7 +38,7 @@ class UserApiClient {
                 } catch {
                     print("エラー")
                 }
-                
+
             case .failure(let err):
                 print("error:\(err)")
             }
@@ -60,7 +60,7 @@ class UserApiClient {
                 } catch {
                     print("エラー")
                 }
-                
+
             case .failure(let err):
                 print("error:\(err)")
             }
@@ -99,7 +99,7 @@ class UserApiClient {
                 } catch {
                     print("エラー")
                 }
-                
+
             case .failure(let err):
                 print("error:\(err)")
             }
