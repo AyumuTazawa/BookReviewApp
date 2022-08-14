@@ -24,6 +24,8 @@ class UserApiClient {
         self.headers = self.userToken.getHeaders()
     }
 
+    /// - Parameters:
+    ///  - signindata:サインインデータ
     func postSignInData(signindata: SignIn, completion: @escaping (Token?) -> Void) {
         print(signindata)
         var token: Token!
