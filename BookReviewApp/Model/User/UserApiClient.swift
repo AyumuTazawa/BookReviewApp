@@ -48,6 +48,8 @@ class UserApiClient {
     }
 
 
+    /// - Parameters:
+    ///  - Login:ログインオブジェクト
     func logIn(logIndata: Login, completion: @escaping (Token?) -> Void) {
         var token: Token!
         let url = "https://api-for-missions-and-railways.herokuapp.com/signin"
