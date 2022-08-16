@@ -88,6 +88,8 @@ class UserApiClient {
     }
 
 
+    /// - Parameters:
+    ///  - Login:UserNameオブジェクト
     func editUserInfo(userData: UserName, completion: @escaping (UserNameStruct?) -> Void) {
         print(userData)
         var name: UserNameStruct!
