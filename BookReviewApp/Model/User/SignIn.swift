@@ -8,11 +8,11 @@
 import Foundation
 
 class SignIn {
-    
+
     let name: UserName
     let email: Email
     let password: Password
-    
+
     init(name: UserName, email: Email, password: Password) {
         self.name = name
         self.email = email
@@ -24,7 +24,7 @@ class SignIn {
         signindata["name"] = self.name.toString()
         signindata["email"] = self.email.toString()
         signindata["password"] = self.password.toString()
-        
+    
         return signindata
     }
 }
