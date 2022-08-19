@@ -18,13 +18,13 @@ class SignIn {
         self.email = email
         self.password = password
     }
-    
+
     func makePostData() -> Dictionary<String, String> {
         var signindata: Dictionary<String, String> = [:]
         signindata["name"] = self.name.toString()
         signindata["email"] = self.email.toString()
         signindata["password"] = self.password.toString()
-    
+
         return signindata
     }
 }
