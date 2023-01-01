@@ -11,7 +11,7 @@ import UIKit
 
 protocol BookApiClientProtocol {
     func fetchBooks(offset: String, completion: @escaping ([Book]?) -> Void)
-    func postBookReview(postBookData: Dictionary<String,String>)
+    func postBookReview(registerBookModel: RegisterBookModel)
     func fetchDetailBookReview(id: String, completion: @escaping (Book?) -> Void)
     func editBookReview(id: String, putBookData: BookModel, completion: @escaping (Book) -> Void)
     func deleteBookReview(id: String)
@@ -42,9 +42,9 @@ class BookApiClient: BookApiClientProtocol {
     }
     
     
-    func postBookReview(postBookData: Dictionary<String, String>) {
+    func postBookReview(registerBookModel: RegisterBookModel) {
         let url = "https://api-for-missions-and-railways.herokuapp.com/books"
-        AF.request(url, method: .post, parameters: postBookData, encoding: JSONEncoding.default, headers: headers).responseData { response in
+        AF.request(url, method: .post, parameters: registerBookModel.toArray(), encoding: JSONEncoding.default, headers: headers).responseData { response in
             switch response.result {
             case .success(let data):
                 do{
