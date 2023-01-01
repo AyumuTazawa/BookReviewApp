@@ -40,16 +40,17 @@ class PostBookReviewViewController: UIViewController {
         let url = postBookReview.bookURLTextField.text!
         let detail = postBookReview.bookDetailTextField.text!
         let review = postBookReview.bookReviewTextField.text!
-        self.registerBookArray = [
-            "title": title,
-            "url": url,
-            "detail": detail,
-            "review": review
-        ]
-        let checkValidationResult: Bool = executeValidationChek(data: registerBookArray)
+        let boolModel: RegisterBookModel = RegisterBookModel(
+              title: title
+            , url: url
+            , detail: detail
+            , review: review
+        )
+        
+        let checkValidationResult: Bool = executeValidationChek(data: boolModel.toArray())
         self.loadingCircle.showIndicator()
         if(checkValidationResult) {
-            self.bookApiClient.postBookReview(postBookData: self.registerBookArray)
+            self.bookApiClient.postBookReview(registerBookModel: boolModel)
             self.loadingCircle.stopIndicator()
         }
         
